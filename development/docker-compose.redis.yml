@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  ext-cluster-redis:
+    container_name: "ext-cluster-redis"
+    hostname: "ext-cluster-redis"
+    image: "redis:7-alpine"
+    command:
+      - "sh"
+      - "-c"  # this is to evaluate the $REDIS_PASSWORD from the env
+      - "redis-server --appendonly yes --requirepass $$REDIS_PASSWORD"
+    env_file:
+      - "dev.env"
+      - "creds.env"
+    ports:
+      - "6379:6379"

@@ -1,0 +1,55 @@
+{
+    "folders": [
+        {
+            "name": "Extended Clusters - A Netbox Plugin.",
+            "path": ".",
+        }
+	],
+	"settings": {
+		"cSpell.words": [
+			"appendonly",
+			"clearcache",
+			"clearsessions",
+			"collectstatic",
+			"colors",
+			"contenttypes",
+			"creds",
+			"DCIM",
+			"Dockerised",
+			"extclustertype",
+			"healthcheck",
+			"ipam",
+			"jobresult",
+			"makemigrations",
+			"mkdocs",
+			"netbox",
+			"Netbox",
+			"nohighlight",
+			"prechange",
+			"pydocstyle",
+			"pypoetry",
+			"pyproject",
+			"Quickstart",
+			"reindex",
+			"requirepass",
+			"runserver",
+			"taggit",
+			"TutorialList",
+			"venv",
+			"virtualenv",
+			"virtualenvs",
+			"webserver"
+		],
+		"cSpell.ignorePaths": [
+			"**/.git/objects/**",
+			"data",
+			"**.code-workspace",
+			"**.env",
+			"tasks.py",
+			"conf.yml",
+			"mkdocs.yml",
+			"pyproject.toml"
+		],
+		"cSpell.language": "en-GB",
+	}
+}

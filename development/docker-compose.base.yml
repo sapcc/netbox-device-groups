@@ -1,0 +1,25 @@
+---
+x-netbox-build: &netbox-build
+    build:
+      context: ..
+      dockerfile: "development/Dockerfile"
+
+x-netbox-base: &netbox-base
+  image: "ext-cluster-ui"
+  container_name: "ext-cluster-ui"
+  hostname: "ext-cluster-ui"
+  env_file:
+    - "dev.env"
+    - "creds.env"
+  tty: true
+
+
+version: '3.8'
+services:
+  ext-cluster-ui:
+    depends_on:
+      ext-cluster-db:
+        condition: "service_healthy"
+      ext-cluster-redis:
+        condition: "service_started"
+    <<: [*netbox-build, *netbox-base]
