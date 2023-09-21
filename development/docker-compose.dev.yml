@@ -1,0 +1,30 @@
+---
+version: "3.8"
+services:
+  ext-cluster-ui:
+    ports:
+      - "8080:8080"
+    volumes:
+      - "../:/app/"
+
+  ext-cluster-docs:
+    entrypoint: "mkdocs serve -v -a 0.0.0.0:8001"
+    ports:
+      - "8001:8001"
+    volumes:
+      - "../:/app/"
+    image: "ext-cluster-ui"
+    container_name: "ext-cluster-docs"
+    hostname: "ext-cluster-docs"
+    healthcheck:
+      disable: true
+    tty: true
+
+    depends_on:
+      ext-cluster-ui:
+        condition: "service_started"
+
+volumes:
+  app_data: {}
+  doc_data: {}
+

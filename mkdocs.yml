@@ -1,0 +1,86 @@
+---
+dev_addr: "127.0.0.1:8001"
+site_name: "Extended Clusters - A Netbox Plugin - Documentation"
+edit_uri: "blob/develop/docs/"
+repo_name: "sapcc/netbox-plugin-extended-clusters"
+repo_url: "https://github.com/sapcc/netbox-plugin-extended-clusters"
+site_url: "https://pages.github.com/sapcc/netbox-plugin-extended-clusters"
+
+nav:
+  - Introduction: "index.md"
+  - Administrator Guide:
+      - Install and Configure: "admin/install.md"
+      - Upgrade: "admin/upgrade.md"
+      - Uninstall: "admin/uninstall.md"
+      - Release Notes:
+        - "admin/release_notes/index.md"
+        - v0.9: "admin/release_notes/version_0.9.md"
+  - Developer Guide:
+      - Design: "dev/design.md"
+      - Extending the Plugin: "dev/extending.md"
+      - Contributing to the Plugin: "dev/contributing.md"
+      - Development Environment: "dev/dev_environment.md"
+
+
+
+# ==================================================================================================================================
+# Setting up the basic NAT docs theme
+theme:
+  icon:
+    logo: fontawesome/solid/server
+    # Change the above Icon to suit your project, if desired
+
+# ==================================================================================================================================
+#   Ignore and do not change anything below this line, these are the standard settings that should be in place for our documentation
+# ==================================================================================================================================
+# Setting up the basic NAT docs theme
+    repo: fontawesome/brands/github
+  name: material
+  palette:
+    - scheme: default
+      primary: blue
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to dark mode
+    - scheme: slate
+      primary: black
+      accent: teal
+      toggle:
+        icon: material/lightbulb
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - toc.follow
+    - toc.integrate
+    - navigation.tracking
+
+# ==================================================================================================================================
+# Setting up the basic plugins
+plugins:
+  - search
+  - autorefs
+  - mkdocstrings
+
+# ==================================================================================================================================
+# Setting up the required markdown extensions
+markdown_extensions:
+  - pymdownx.superfences:
+      extended_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - abbr
+  - attr_list
+  - admonition
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.highlight
+  - pymdownx.progressbar
+  - pymdownx.smartsymbols
+  - pymdownx.snippets
+  - pymdownx.keys
+  - pymdownx.tilde
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg

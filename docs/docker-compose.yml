@@ -1,0 +1,27 @@
+---
+version: '3.8'
+services:
+  ext-cluster-ui:
+    image: "ext-cluster-ui"
+    container_name: "ext-cluster-ui"
+    hostname: "ext-cluster-ui"
+    build:
+      context: ..
+      dockerfile: "development/Dockerfile"
+    volumes:
+      - "..:/app:cached"
+      - "~/dev/work/sap/backups:/backups"
+    env_file:
+      - "dev.env"
+      - "creds.env"
+    depends_on:
+      ext-cluster-db:
+        condition: "service_healthy"
+      ext-cluster-redis:
+        condition: "service_started"
+    ports:
+      - "8080:8080"
+
+volumes:
+  app_data: {}
+  backup_data: {}
