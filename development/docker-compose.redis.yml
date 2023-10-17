@@ -1,8 +1,8 @@
 version: '3.8'
 services:
-  ext-cluster-redis:
-    container_name: "ext-cluster-redis"
-    hostname: "ext-cluster-redis"
+  phy-cluster-redis:
+    container_name: "phy-cluster-redis"
+    hostname: "phy-cluster-redis"
     image: "redis:7-alpine"
     command:
       - "sh"

@@ -1,20 +1,38 @@
 [tool.poetry]
-name = "netbox-plugin-extended-clusters"
-version = "0.1.0"
-description = ""
+name = "netbox-physical-clusters"
+version = "0.2.0"
 authors = ["Pat McLean <patrick.mclean@sap.com>", "The Fail Druid <faildruid@ahra.ie"]
 readme = "README.md"
+keywords = ["Netbox", "netbox", "plugin"]
+description = "A netbox plugin for managing multiple physical cluster types"
+classifiers = [
+    "Intended Audience :: Developers",
+    "Development Status :: 5 - Production/Stable",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+]
+homepage = "https://github.com/sapcc/netbox-physical-clusters"
+documentation = "https://sapcc.github.io/netbox-physical-clusters"
 
 
 packages = [
-    {include = "netbox_plugin_extended_clusters"},
+    {include = "netbox_physical_clusters"},
 ]
 
 
 [tool.poetry.dependencies]
 python = "^3.10"
+
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.7.0"
 bleach = "6.0.0"
 boto3 = "1.28.26"
+coverage = "^7.3.0"
 django = "4.2.5"
 django-cors-headers = "4.2.0"
 django-debug-toolbar = "4.2.0"
@@ -34,34 +52,31 @@ drf-spectacular = "0.26.4"
 drf-spectacular-sidecar = "2023.9.1"
 dulwich = "0.21.5"
 feedparser = "6.0.10"
+flake8 = "^6.1.0"
 graphene-django = "3.0.0"
 gunicorn = "21.2.0"
+invoke = "^2.2.0"
 jinja2 = "3.1.2"
 markdown = "3.3.7"
+mkdocs = "1.5.2"
+mkdocs-autorefs = "0.5.0"
+mkdocs-material = "9.2.7"
+mkdocs-material-extensions = "1.1.1"
+mkdocstrings = {version = "0.23.0", extras = ["python-legacy"]}
 netaddr = "0.8.0"
 pillow = "10.0.0"
 psycopg = {version = "3.1.10", extras = ["binary", "pool"]}
+pydocstyle = "^6.3.0"
 pyyaml = "6.0.1"
 sentry-sdk = "1.30.0"
+snowballstemmer = "^2.2.0"
 social-auth-app-django = "5.3.0"
 social-auth-core = {version = "4.4.2", extras = ["openidconnect"]}
 svgwrite = "1.4.3"
 tablib = "3.5.0"
+twine = "^4.0.2"
 tzdata = "2023.3"
-
-
-[tool.poetry.group.dev.dependencies]
-invoke = "^2.2.0"
-black = "^23.7.0"
-coverage = "^7.3.0"
-flake8 = "^6.1.0"
-mkdocs = "1.5.2"
-mkdocstrings = {version = "0.23.0", extras = ["python-legacy"]}
-mkdocs-autorefs = "0.5.0"
-mkdocs-material = "9.2.7"
-mkdocs-material-extensions = "1.1.1"
 yamllint = "^1.32.0"
-
 
 [build-system]
 requires = ["poetry-core"]
@@ -69,7 +84,7 @@ build-backend = "poetry.core.masonry.api"
 
 
 [tool.black]
-line-length = 120
+line-length = 119          # Github View Window Width
 target-version = ['py37']
 include = '\.pyi?$'
 exclude = '''
@@ -77,7 +92,7 @@ exclude = '''
   /(
       \.eggs         # exclude a few common directories in the
     | \.git          # root of the project
-    | \.hg
+    | \development
     | \.mypy_cache
     | \.tox
     | \.venv
@@ -85,12 +100,12 @@ exclude = '''
     | buck-out
     | build
     | dist
+    | migrations
   )/
   | tasks.py     # This is where you define files that should not be stylized by black
-                    # the root of the project
+                 # the root of the project
 )
 '''
-
 
 [tool.pydocstyle]
 convention = "google"

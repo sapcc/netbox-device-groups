@@ -8,11 +8,11 @@ To uninstall the plugin, remove/comment out the configuration entries for the pl
 
 ```python
 PLUGINS = [
-    #"netbox_plugin_extended_clusters",
+    #"netbox_physical_clusters",
     'other plugins here',
 ]
 PLUGINS_CONFIG = {
-    # "netbox_plugin_extended_clusters": {
+    # "netbox_physical_clusters": {
     #     "USERNAME": "foo",
     #     "PASSWORD": "bar",
     # }
@@ -26,4 +26,4 @@ Now run the [post install steps](install.md/#post-install-steps) to clear the pl
 
 ## Database Clean-up
 
-To ensure the database is clean after the plugin is removed is removed, drop all tables created by the plugin: `netbox_plugin_extended_clusters_*`.
+To ensure the database is clean after the plugin is removed is removed, drop all tables created by the plugin: `physical_clusters_*`.

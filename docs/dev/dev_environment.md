@@ -9,6 +9,20 @@ The development environment can be used in two ways:
 
 This is a quick reference guide if you're already familiar with the development environment provided, which you can read more about later in this document.
 
+### Enabling Pre-Commit Hooks
+
+This plugin ships with a [Git pre-commit hook](https://githooks.com/) script that automatically checks for style compliance and missing database migrations prior to committing changes. This helps avoid erroneous commits that result in CI test failures.
+
+!!! note
+    This pre-commit hook currently only supports the Python Virtual Environment Workflow.
+
+You are encouraged to enable it by creating a symbolic link to `development/scripts/git-hooks/pre-commit`:
+
+```no-highlight
+cd .git/hooks/
+ln -s ../../development/scripts/git-hooks/pre-commit
+```
+
 ### Invoke
 
 The [Invoke](http://www.pyinvoke.org/) library is used to provide some helper commands based on the environment. There are a few configuration parameters which can be passed to Invoke to override the default configuration:
@@ -154,8 +168,8 @@ The first thing you need to do is build the necessary Docker image for the app t
 #19 exporting layers
 #19 exporting layers 2.5s done
 #19 writing image sha256:5e1e326448501f8769f575ff0b61240c6fd09ca8b5a1291b969833b459f5c881 done
-#19 naming to docker.io/library/ext-cluster-ui
-#19 naming to docker.io/library/ext-cluster-ui done
+#19 naming to docker.io/library/phy-cluster-ui
+#19 naming to docker.io/library/phy-cluster-ui done
 #19 DONE 2.5s
 ```
 
@@ -167,24 +181,24 @@ Next, you need to start up your Docker containers.
 ➜ invoke start
 Starting Netbox in detached mode...
 Running docker-compose command "up --detach"
- Container ext-cluster-redis  Recreate
- Container ext-cluster-db  Recreate
- Container ext-cluster-docs  Recreate
- Container ext-cluster-redis  Recreated
- Container ext-cluster-db  Recreated
- Container ext-cluster-ui  Recreate
- Container ext-cluster-docs  Recreated
- Container ext-cluster-ui  Recreated
- Container ext-cluster-redis  Starting
- Container ext-cluster-db  Starting
- Container ext-cluster-docs  Starting
- Container ext-cluster-redis  Started
- Container ext-cluster-db  Started
- Container ext-cluster-db  Waiting
- Container ext-cluster-docs  Started
- Container ext-cluster-db  Healthy
- Container ext-cluster-ui  Starting
- Container ext-cluster-ui  Started
+ Container phy-cluster-redis  Recreate
+ Container phy-cluster-db  Recreate
+ Container phy-cluster-docs  Recreate
+ Container phy-cluster-redis  Recreated
+ Container phy-cluster-db  Recreated
+ Container phy-cluster-ui  Recreate
+ Container phy-cluster-docs  Recreated
+ Container phy-cluster-ui  Recreated
+ Container phy-cluster-redis  Starting
+ Container phy-cluster-db  Starting
+ Container phy-cluster-docs  Starting
+ Container phy-cluster-redis  Started
+ Container phy-cluster-db  Started
+ Container phy-cluster-db  Waiting
+ Container phy-cluster-docs  Started
+ Container phy-cluster-db  Healthy
+ Container phy-cluster-ui  Starting
+ Container phy-cluster-ui  Started
 ```
 
 This will start all of the Docker containers used for hosting the app. You should see the following containers running after `invoke start` is finished.
@@ -192,10 +206,10 @@ This will start all of the Docker containers used for hosting the app. You shoul
 ```bash
 ➜ docker ps
 CONTAINER ID   IMAGE                COMMAND                  CREATED          STATUS                    PORTS                    NAMES
-b39a80476277   ext-cluster-ui      "/opt/entrypoint.sh"     18 seconds ago   Up 6 seconds              0.0.0.0:8080->8080/tcp   ext-cluster-ui
-100632ca4f42   ext-cluster-ui      "mkdocs serve -v -a …"   18 seconds ago   Up 17 seconds             0.0.0.0:8001->8001/tcp   ext-cluster-docs
-21492abea2f6   postgres:14-alpine   "docker-entrypoint.s…"   18 seconds ago   Up 17 seconds (healthy)   0.0.0.0:5432->5432/tcp   ext-cluster-db
-a620e0c82e6d   redis:7-alpine       "docker-entrypoint.s…"   18 seconds ago   Up 17 seconds             0.0.0.0:6379->6379/tcp   ext-cluster-redis
+b39a80476277   phy-cluster-ui      "/opt/entrypoint.sh"     18 seconds ago   Up 6 seconds              0.0.0.0:8080->8080/tcp   phy-cluster-ui
+100632ca4f42   phy-cluster-ui      "mkdocs serve -v -a …"   18 seconds ago   Up 17 seconds             0.0.0.0:8001->8001/tcp   phy-cluster-docs
+21492abea2f6   postgres:14-alpine   "docker-entrypoint.s…"   18 seconds ago   Up 17 seconds (healthy)   0.0.0.0:5432->5432/tcp   phy-cluster-db
+a620e0c82e6d   redis:7-alpine       "docker-entrypoint.s…"   18 seconds ago   Up 17 seconds             0.0.0.0:6379->6379/tcp   phy-cluster-redis
 ```
 
 Once the containers are fully up, you should be able to open up a web browser, and view:
@@ -213,7 +227,7 @@ If you need to create a superuser, run the follow commands.
 ```bash
 ➜ invoke createsuperuser
 Running docker-compose command "ps --services --filter status=running"
-Running docker-compose command "exec ext-cluster-ui python /opt/netbox/netbox/manage.py createsuperuser --username admin"
+Running docker-compose command "exec phy-cluster-ui python /opt/netbox/netbox/manage.py createsuperuser --username admin"
 Email address: email@example.com
 Password (again):
 Superuser created successfully.
@@ -227,24 +241,24 @@ The last command to know for now is `invoke stop`.
 ➜ invoke stop
 Stopping Netbox...
 Running docker-compose command "down"
- Container ext-cluster-ui  Stopping
- Container ext-cluster-docs  Stopping
- Container ext-cluster-ui  Stopped
- Container ext-cluster-ui  Removing
- Container ext-cluster-ui  Removed
- Container ext-cluster-db  Stopping
- Container ext-cluster-redis  Stopping
- Container ext-cluster-db  Stopped
- Container ext-cluster-db  Removing
- Container ext-cluster-db  Removed
- Container ext-cluster-redis  Stopped
- Container ext-cluster-redis  Removing
- Container ext-cluster-redis  Removed
- Container ext-cluster-docs  Stopped
- Container ext-cluster-docs  Removing
- Container ext-cluster-docs  Removed
- Network netbox_plugin_extended_clusters_default  Removing
- Network netbox_plugin_extended_clusters_default  Removed
+ Container phy-cluster-ui  Stopping
+ Container phy-cluster-docs  Stopping
+ Container phy-cluster-ui  Stopped
+ Container phy-cluster-ui  Removing
+ Container phy-cluster-ui  Removed
+ Container phy-cluster-db  Stopping
+ Container phy-cluster-redis  Stopping
+ Container phy-cluster-db  Stopped
+ Container phy-cluster-db  Removing
+ Container phy-cluster-db  Removed
+ Container phy-cluster-redis  Stopped
+ Container phy-cluster-redis  Removing
+ Container phy-cluster-redis  Removed
+ Container phy-cluster-docs  Stopped
+ Container phy-cluster-docs  Removing
+ Container phy-cluster-docs  Removed
+ Network physical_clusters_default  Removing
+ Network physical_clusters_default  Removed
 ```
 
 This will safely shut down all of your running Docker containers for this project. When you are ready to spin containers back up, it is as simple as running `invoke start` again [as seen previously](#starting-the-development-environment).

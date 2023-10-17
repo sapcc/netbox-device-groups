@@ -9,7 +9,7 @@ echo "⏳ Waiting 10 seconds for the database server to initialize"
 sleep 10s
 
 cd "$NETBOX_HOME"
-cp /app/development/sap_netbox_dev.svg /opt/netbox/netbox/project-static/img/netbox_logo.svg
+cp /app/development/netbox_dev.svg /opt/netbox/netbox/project-static/img/netbox_logo.svg
 # Prepare the web static content
 echo "⏳ Running initial systems check..."
 python3 manage.py migrate

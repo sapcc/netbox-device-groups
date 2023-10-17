@@ -1,10 +1,10 @@
 ---
 version: '3.8'
 services:
-  ext-cluster-ui:
-    image: "ext-cluster-ui"
-    container_name: "ext-cluster-ui"
-    hostname: "ext-cluster-ui"
+  phy-cluster-ui:
+    image: "phy-cluster-ui"
+    container_name: "phy-cluster-ui"
+    hostname: "phy-cluster-ui"
     build:
       context: ..
       dockerfile: "development/Dockerfile"
@@ -15,9 +15,9 @@ services:
       - "dev.env"
       - "creds.env"
     depends_on:
-      ext-cluster-db:
+      phy-cluster-db:
         condition: "service_healthy"
-      ext-cluster-redis:
+      phy-cluster-redis:
         condition: "service_started"
     ports:
       - "8080:8080"

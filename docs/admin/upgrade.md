@@ -5,10 +5,10 @@ Here you will find any steps necessary to upgrade the plugin in your Netbox envi
 ## Upgrade Guide
 
 ```shell
-pip install --upgrade netbox-plugin-extended-clusters
+pip install --upgrade netbox-physical-clusters
 ```
 
-When a new release comes out it may be necessary to run a migration of the database to account for any changes in the data models used by this plugin,  after updating the `netbox_plugin_extended_clusters` package via `pip`.
+When a new release comes out it may be necessary to run a migration of the database to account for any changes in the data models used by this plugin,  after updating the `physical_clusters` package via `pip`.
 
 Run the post upgrade steps from the _Netbox Home_ to run migrations, and clear any cache:
 

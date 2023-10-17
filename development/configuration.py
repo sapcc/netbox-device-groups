@@ -1,24 +1,25 @@
 import os
+
 #########################
 #                       #
 # Development  settings #
 #                       #
 #########################
-BANNER_TOP = 'Netbox Plugin - Extended Clusters'
+BANNER_TOP = "Netbox Plugin - Physical Clusters"
 BANNER_BOTTOM = BANNER_TOP
 BANNER_LOGIN = BANNER_TOP
 LOGIN_REQUIRED = False
 # Date/time formatting. See the following link for supported formats:
 # https://docs.djangoproject.com/en/dev/ref/templates/builtins/#date
-DATE_FORMAT = 'N j, Y'
-SHORT_DATE_FORMAT = 'Y-m-d'
-TIME_FORMAT = 'g:i a'
-SHORT_TIME_FORMAT = 'H:i:s'
-DATETIME_FORMAT = 'N j, Y g:i a'
-SHORT_DATETIME_FORMAT = 'Y-m-d H:i'
+DATE_FORMAT = "N j, Y"
+SHORT_DATE_FORMAT = "Y-m-d"
+TIME_FORMAT = "g:i a"
+SHORT_TIME_FORMAT = "H:i:s"
+DATETIME_FORMAT = "N j, Y g:i a"
+SHORT_DATETIME_FORMAT = "Y-m-d H:i"
 
 # exclude all objects from view permissions
-EXEMPT_VIEW_PERMISSIONS = ['*']
+EXEMPT_VIEW_PERMISSIONS = ["*"]
 
 
 ALLOWED_HOSTS = os.getenv("NETBOX_ALLOWED_HOSTS", "*").split(" ")
@@ -56,10 +57,10 @@ DEVELOPER = True
 INTERNAL_IPS = ("0.0.0.0", "127.0.0.1", "::1")
 
 PLUGINS = [
-    "netbox_plugin_extended_clusters",
+    "netbox_physical_clusters",
 ]
 PLUGINS_CONFIG = {
-    # "netbox_plugin_custom_clusters": {
+    # "netbox_physical_clusters": {
     #     "USERNAME": "foo",
     #     "PASSWORD": "bar",
     # }

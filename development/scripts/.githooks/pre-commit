@@ -1,0 +1,35 @@
+#!/bin/sh
+# Create a link to this file at .git/hooks/pre-commit to force various linting and static analysis prior to committing
+
+exec 1>&2
+
+EXIT=0
+RED='\033[0;31m'
+NOCOLOR='\033[0m'
+
+if [ -d ./venv/ ]; then
+    VENV="$PWD/venv"
+    if [ -e $VENV/bin/python ]; then
+        PATH=$VENV/bin:$PATH
+    elif [ -e $VENV/Scripts/python.exe ]; then
+        PATH=$VENV/Scripts:$PATH
+    fi
+fi
+
+echo "Validating PEP8 compliance..."
+invoke flake8 || EXIT=1
+
+echo "Check that all files conform to Black..."
+invoke black || EXIT=1
+
+echo "Checking for missing migrations..."
+invoke check-migrations || EXIT=1
+
+echo "Check docstring formatting via pydocstyle..."
+invoke pydocstyle || EXIT=1
+
+if [ $EXIT != 0 ]; then
+	printf "${RED}COMMIT FAILED${NOCOLOR}\n"
+fi
+
+exit $EXIT
