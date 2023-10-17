@@ -210,47 +210,47 @@
         }
     },
     {
-        "model": "netbox_plugin_extended_clusters.extendedclustertype",
+        "model": "netbox_physical_clusters.physicalclustertype",
         "pk": 1,
         "fields": {
             "created": "2023-09-20T13:18:59.141Z",
             "last_updated": "2023-09-20T13:18:59.141Z",
             "custom_field_data": {},
             "name": "Arista Spines",
-            "slug": "arista-spines"
+            "description": "arista-spines"
         }
     },
     {
-        "model": "netbox_plugin_extended_clusters.extendedclustertype",
+        "model": "netbox_physical_clusters.physicalclustertype",
         "pk": 2,
         "fields": {
             "created": "2023-09-20T13:21:15.222Z",
             "last_updated": "2023-09-20T13:21:15.222Z",
             "custom_field_data": {},
             "name": "Cisco Spines",
-            "slug": "cisco-spines"
+            "description": "cisco-spines"
         }
     },
     {
-        "model": "netbox_plugin_extended_clusters.extendedclustertype",
+        "model": "netbox_physical_clusters.physicalclustertype",
         "pk": 3,
         "fields": {
             "created": "2023-09-20T13:21:15.222Z",
             "last_updated": "2023-09-20T13:21:15.222Z",
             "custom_field_data": {},
             "name": "Arista MLAG",
-            "slug": "arista-mlag"
+            "description": "arista-mlag"
         }
     },
     {
-        "model": "netbox_plugin_extended_clusters.extendedclustertype",
+        "model": "netbox_physical_clusters.physicalclustertype",
         "pk": 4,
         "fields": {
             "created": "2023-09-20T13:21:15.222Z",
             "last_updated": "2023-09-20T13:21:15.222Z",
             "custom_field_data": {},
             "name": "Cisco VPC",
-            "slug": "cisco-vpc"
+            "description": "cisco-vpc"
         }
     }
 ]

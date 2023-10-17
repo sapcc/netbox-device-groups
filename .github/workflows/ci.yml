@@ -1,0 +1,37 @@
+---
+name: "Linting"
+on: # yamllint disable-line rule:truthy rule:comments
+  - "push"
+  - "pull_request"
+
+env:
+  PLUGIN_NAME: "nautobot-physical-clusters"
+
+jobs:
+  black:
+    runs-on: ["ubuntu-22.04"]
+    steps:
+      - name: "Check out repository code"
+        uses: "actions/checkout@v2"
+      - name: "Setup environment"
+        uses: "./.github/actions/gh-action-setup-poetry-environment"
+      - name: "Linting: black"
+        run: "poetry run black --check --diff ."
+  pydocstyle:
+    runs-on: ["ubuntu-22.04"]
+    steps:
+      - name: "Check out repository code"
+        uses: "actions/checkout@v2"
+      - name: "Setup environment"
+        uses: "./.github/actions/gh-action-setup-poetry-environment"
+      - name: "Linting: pydocstyle"
+        run: "poetry run pydocstyle ."
+  flake8:
+    runs-on: ["ubuntu-22.04"]
+    steps:
+      - name: "Check out repository code"
+        uses: "actions/checkout@v2"
+      - name: "Setup environment"
+        uses: "./.github/actions/gh-action-setup-poetry-environment"
+      - name: "Linting: flake8"
+        run: "poetry run flake8 ."

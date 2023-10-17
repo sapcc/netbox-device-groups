@@ -1,11 +1,15 @@
-FROM python:3.10-alpine
+# -------------------------------------------------------------------------------------
+# Netbox Plugin Developement Dockerfile Template
+# Version: 1.0.0
+#
+# Plugins that need to add additional steps or packages can do in the section below.
+# -------------------------------------------------------------------------------------
+# !!! USE CAUTION WHEN MODIFYING LINES BELOW
 
-ENV POETRY_HOME="/opt/poetry" \
-    POETRY_VIRTUALENVS_CREATE=0 \
-    POETRY_NO_INTERACTION=1 \
-    POETRY_VERSION=1.3.1
+# Accepts a desired Python version as build argument, default to 3.9
+ARG PYTHON_VER="3.9"
 
-ENV PATH="$POETRY_HOME/bin:$PATH"
+FROM python:${PYTHON_VER}-alpine
 
 RUN apk --update --no-progress --no-cache upgrade && \
     apk add --no-cache --virtual .build-deps \
@@ -14,26 +18,34 @@ RUN apk --update --no-progress --no-cache upgrade && \
         openldap-dev \
         freetype-dev
 RUN apk --update --no-progress add git zsh postgresql-client
-# Copy in the source code ans install poetry
-RUN curl -sSL https://install.python-poetry.org | python3 -
+
+# Install NetBox
+# Accepts a desired Netbox version as build argument, default to 3.5.8
+ARG NETBOX_VER="3.5.8"
+ARG NETBOX_ROOT=/opt/netbox
+RUN mkdir -p ${NETBOX_ROOT}
+RUN git clone --depth 1 --branch=v${NETBOX_VER} https://github.com/netbox-community/netbox.git ${NETBOX_ROOT}
+
+# Copy in the source code
 WORKDIR /app
 COPY . /app/
-
+# And install poetry
+ENV POETRY_HOME="/opt/poetry" \
+    POETRY_VIRTUALENVS_CREATE=0 \
+    POETRY_NO_INTERACTION=1 \
+    POETRY_VERSION=1.3.1
+ENV PATH="$POETRY_HOME/bin:$PATH"
+RUN curl -sSL https://install.python-poetry.org | python3 -
+# Configure poetry for container wide package install
 RUN poetry config virtualenvs.create false
 # install the dependencies
 RUN poetry install --no-interaction --no-ansi
 
-
-# Install NetBox
-RUN mkdir -p /opt/netbox \
-    && git clone --depth 1 --branch=v3.5.9 https://github.com/netbox-community/netbox.git /opt/netbox/
-COPY development/sap_netbox_dev.svg /opt/netbox/netbox/project-static/img/netbox_logo.svg
-# Now clean up the image by remving the gcc/package build dependencies
+# Now clean up the image by removing the gcc/package build dependencies
 RUN apk del .build-deps
 
-
 # Get the development instance of NetBox up and running
-COPY development/configuration.py /opt/netbox/netbox/netbox/configuration.py
+COPY development/configuration.py ${NETBOX_ROOT}/netbox/netbox/configuration.py
 COPY development/entrypoint.sh /opt/entrypoint.sh
 RUN ["chmod", "+x", "/opt/entrypoint.sh"]
 ENTRYPOINT ["/opt/entrypoint.sh"]

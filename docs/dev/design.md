@@ -2,7 +2,7 @@
 
 ## Purpose
 
-A extended cluster represents a logical grouping of physical resources within which shared services will run. Physical devices may be associated with clusters as server hosts, network devices, and storage arrays. This plugin will allow users to track in which cluster(s) a particular device may reside.
+A physical cluster represents a logical grouping of physical resources within which shared services will run. Physical devices may be associated with clusters as server hosts, network devices, and storage arrays. This plugin will allow users to track in which cluster(s) a particular device may reside.
 
 ### Intended Audience and Reading suggestions
 
@@ -35,14 +35,12 @@ A extended cluster represents a logical grouping of physical resources within wh
 
 ```mermaid
 ---
-title: Extended Clusters ERD
+title: Physical Clusters ERD
 ---
 erDiagram
-    CLUSTER ||--|{ CLUSTER_STATUS : contains
     CLUSTER ||--|{ CLUSTER_TYPE : contains
     CLUSTER ||--|{ CLUSTER_NODES : contains
     CLUSTER_NODES ||--|{ DCIM_DEVICE : contains
-    CLUSTER ||--|{ CLUSTER_NAME : contains
 ```
 
 ### Design and Implementation Constraints

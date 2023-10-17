@@ -1,20 +1,24 @@
 ---
 dev_addr: "127.0.0.1:8001"
-site_name: "Extended Clusters - A Netbox Plugin - Documentation"
+site_name: "Physical Clusters - A Netbox Plugin - Documentation"
 edit_uri: "blob/develop/docs/"
-repo_name: "sapcc/netbox-plugin-extended-clusters"
-repo_url: "https://github.com/sapcc/netbox-plugin-extended-clusters"
-site_url: "https://pages.github.com/sapcc/netbox-plugin-extended-clusters"
+repo_name: "sapcc/netbox-physical-clusters"
+repo_url: "https://github.com/sapcc/netbox-physical-clusters"
+site_url: "https://pages.github.com/sapcc/netbox-physical-clusters"
 
 nav:
   - Introduction: "index.md"
+  - User Guide:
+      - App Overview: "user/app_overview.md"
+      - Using the App: "user/app_use_cases.md"
+      - Getting Started: "user/app_getting_started.md"
   - Administrator Guide:
       - Install and Configure: "admin/install.md"
       - Upgrade: "admin/upgrade.md"
       - Uninstall: "admin/uninstall.md"
       - Release Notes:
         - "admin/release_notes/index.md"
-        - v0.9: "admin/release_notes/version_0.9.md"
+        - v0.2: "admin/release_notes/version_0.2.md"
   - Developer Guide:
       - Design: "dev/design.md"
       - Extending the Plugin: "dev/extending.md"
@@ -59,13 +63,20 @@ theme:
 plugins:
   - search
   - autorefs
-  - mkdocstrings
-
+  - mkdocstrings:
+      default_handler: "python"
+      handlers:
+        python:
+          paths: ["."]
+          options:
+            heading_level: 1
+            show_root_heading: true
+            show_root_members_full_path: true
 # ==================================================================================================================================
 # Setting up the required markdown extensions
 markdown_extensions:
   - pymdownx.superfences:
-      extended_fences:
+      custom_fences:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format

@@ -1,9 +1,9 @@
 version: '3.8'
 services:
-  ext-cluster-db:
-    image: "postgres:14-alpine"
-    container_name: "ext-cluster-db"
-    hostname: "ext-cluster-db"
+  phy-cluster-db:
+    image: "postgres:15.4-alpine"
+    container_name: "phy-cluster-db"
+    hostname: "phy-cluster-db"
     env_file:
       - "dev.env"
       - "creds.env"

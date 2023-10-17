@@ -14,31 +14,31 @@ No external systems access is required to use this plugin.
 ## Install Guide
 
 !!! note
-    Plugins can be installed manually or using Python's `pip`. See the [netbox documentation](https://docs.netbox.dev/en/stable/plugins/) for more details. The pip package name for this plugin is [`netbox_plugin_extended_clusters`](https://pypi.org/project/netbox_plugin_extended_clusters/).
+    Plugins can be installed manually or using Python's `pip`. See the [netbox documentation](https://docs.netbox.dev/en/stable/plugins/) for more details. The pip package name for this plugin is [`netbox_physical_clusters`](https://pypi.org/project/netbox_physical_clusters/).
 
 The plugin is available as a Python package via PyPI and can be installed with `pip`:
 
 ```shell
-pip install netbox-plugin-extended-clusters
+pip install netbox-physical-clusters
 ```
 
-To ensure the extended cluster plugin is automatically re-installed during future upgrades, create a file named `local_requirements.txt` (if not already existing) in the Netbox root directory (alongside `requirements.txt`) and list the `netbox_plugin_extended_clusters` package:
+To ensure the physical cluster plugin is automatically re-installed during future upgrades, create a file named `local_requirements.txt` (if not already existing) in the Netbox root directory (alongside `requirements.txt`) and list the `netbox_physical_clusters` package:
 
 ```shell
-echo netbox-plugin-extended-clusters >> local_requirements.txt
+echo netbox-physical-clusters >> local_requirements.txt
 ```
 
 Once installed, the plugin needs to be enabled in your Netbox configuration. The following block of code below shows the additional configuration required to be added to your `$NETBOX_ROOT/netbox/configuration.py` file:
 
-- Append `"netbox_plugin_extended_clusters"` to the `PLUGINS` list.
-- Append the `"netbox_plugin_extended_clusters"` dictionary to the `PLUGINS_CONFIG` dictionary and override any defaults.
+- Append `"netbox_physical_clusters"` to the `PLUGINS` list.
+- Append the `"netbox_physical_clusters"` dictionary to the `PLUGINS_CONFIG` dictionary and override any defaults.
 
 ```python
 PLUGINS = [
-    "netbox_plugin_extended_clusters",
+    "netbox_physical_clusters",
 ]
 PLUGINS_CONFIG = {
-    "netbox_plugin_extended_clusters": {
+    "netbox_physical_clusters": {
         "USERNAME": "foo",
         "PASSWORD": "bar",
     }
