@@ -1,53 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://pages.github.com/sapcc/netbox-plugin-extended-clusters/</loc>
-         <lastmod>2023-09-26</lastmod>
+         <loc>https://pages.github.com/sapcc/netbox-physical-clusters/</loc>
+         <lastmod>2023-10-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://pages.github.com/sapcc/netbox-plugin-extended-clusters/admin/install/</loc>
-         <lastmod>2023-09-26</lastmod>
+         <loc>https://pages.github.com/sapcc/netbox-physical-clusters/admin/install/</loc>
+         <lastmod>2023-10-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://pages.github.com/sapcc/netbox-plugin-extended-clusters/admin/uninstall/</loc>
-         <lastmod>2023-09-26</lastmod>
+         <loc>https://pages.github.com/sapcc/netbox-physical-clusters/admin/uninstall/</loc>
+         <lastmod>2023-10-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://pages.github.com/sapcc/netbox-plugin-extended-clusters/admin/upgrade/</loc>
-         <lastmod>2023-09-26</lastmod>
+         <loc>https://pages.github.com/sapcc/netbox-physical-clusters/admin/upgrade/</loc>
+         <lastmod>2023-10-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://pages.github.com/sapcc/netbox-plugin-extended-clusters/admin/release_notes/</loc>
-         <lastmod>2023-09-26</lastmod>
+         <loc>https://pages.github.com/sapcc/netbox-physical-clusters/admin/release_notes/</loc>
+         <lastmod>2023-10-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://pages.github.com/sapcc/netbox-plugin-extended-clusters/admin/release_notes/version_0.9/</loc>
-         <lastmod>2023-09-26</lastmod>
+         <loc>https://pages.github.com/sapcc/netbox-physical-clusters/admin/release_notes/version_0.2/</loc>
+         <lastmod>2023-10-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://pages.github.com/sapcc/netbox-plugin-extended-clusters/dev/contributing/</loc>
-         <lastmod>2023-09-26</lastmod>
+         <loc>https://pages.github.com/sapcc/netbox-physical-clusters/dev/contributing/</loc>
+         <lastmod>2023-10-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://pages.github.com/sapcc/netbox-plugin-extended-clusters/dev/design/</loc>
-         <lastmod>2023-09-26</lastmod>
+         <loc>https://pages.github.com/sapcc/netbox-physical-clusters/dev/design/</loc>
+         <lastmod>2023-10-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://pages.github.com/sapcc/netbox-plugin-extended-clusters/dev/dev_environment/</loc>
-         <lastmod>2023-09-26</lastmod>
+         <loc>https://pages.github.com/sapcc/netbox-physical-clusters/dev/dev_environment/</loc>
+         <lastmod>2023-10-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://pages.github.com/sapcc/netbox-plugin-extended-clusters/dev/extending/</loc>
-         <lastmod>2023-09-26</lastmod>
+         <loc>https://pages.github.com/sapcc/netbox-physical-clusters/dev/extending/</loc>
+         <lastmod>2023-10-24</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pages.github.com/sapcc/netbox-physical-clusters/user/app_getting_started/</loc>
+         <lastmod>2023-10-24</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pages.github.com/sapcc/netbox-physical-clusters/user/app_overview/</loc>
+         <lastmod>2023-10-24</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pages.github.com/sapcc/netbox-physical-clusters/user/app_use_cases/</loc>
+         <lastmod>2023-10-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
