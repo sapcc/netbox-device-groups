@@ -72,13 +72,19 @@ Then restart the Netbox services:
 sudo systemctl restart netbox netbox-rq
 ```
 
-## App Configuration
+## Permissions
 
-!!! warning "Developer Note - Remove Me!"
-    Any configuration required to get the App set up. Edit the table below as per the examples provided.
+This plugins employs the Netbox object-based permissions framework, which replaces Django's built-in permissions model. These object-based permissions enable an administrator to grant users or groups the ability to perform an action on the objects provided by this plugin.
 
-The plugin behaviour can be controlled with the following list of settings:
+### Actions
 
-| Key     | Example | Default | Description                          |
-| ------- | ------ | -------- | ------------------------------------- |
-| `example_setting` | `True` | `True` | A boolean to represent whether or not to use the example setting within the plugin. |
+There are four core actions that can be permitted for each type of object within NetBox, roughly analogous to the CRUD convention (create, read, update, and delete):
+
+- __View__ - Retrieve an object from the database
+- __Add__ - Create a new object
+- __Change__ - Modify an existing object
+- __Delete__ - Delete an existing object
+
+On the Permissions admin page, choose the actions you require, and assign them to the __Netbox Physical Clusters__ objects, then assign a group or user to the permission.
+
+![alt text](img/permissions.png){{: style="height:40%;width:40%;"}
