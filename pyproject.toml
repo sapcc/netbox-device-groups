@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "netbox-physical-clusters"
-version = "0.2.0"
+version = "0.2.1"
 authors = ["Pat McLean <patrick.mclean@sap.com>", "The Fail Druid <faildruid@ahra.ie"]
 readme = "README.md"
 keywords = ["Netbox", "netbox", "plugin"]
