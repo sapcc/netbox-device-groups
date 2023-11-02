@@ -1,14 +1,22 @@
 """API Viewsets for the plugin."""
 
+from django.http import JsonResponse
 from rest_framework.routers import APIRootView
 
 from dcim.models import Device
 from netbox.api.viewsets import NetBoxModelViewSet
 from utilities.utils import count_related
 
+from netbox_physical_clusters import PhysicalClusterConfig
 from netbox_physical_clusters import filtersets
 from netbox_physical_clusters.models import PhysicalCluster, PhysicalClusterType
 from . import serializers
+
+
+def get_version(request):
+    """Returns the version of the plugin"""
+    config = PhysicalClusterConfig
+    return JsonResponse({config.name: {"verbose_name": config.verbose_name,"description": config.description,"author": config.author,"author_email": config.author_email,"version": config.version,"min_netbox_version": config.min_version}})
 
 
 class PhysicalClusterRootView(APIRootView):
