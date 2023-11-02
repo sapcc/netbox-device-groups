@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  phy-cluster-db:
+    image: "postgres:15.4-alpine"
+    container_name: "phy-cluster-db"
+    hostname: "phy-cluster-db"
+    env_file:
+      - "dev.env"
+      - "creds.env"
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: "pg_isready --username=$$POSTGRES_USER --dbname=$$POSTGRES_DB"
+      interval: "10s"
+      timeout: "5s"
+      retries: 10
+    volumes:
+      - "postgres_data:/var/lib/postgresql/data"
+volumes:
+  postgres_data: {}

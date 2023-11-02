@@ -1,0 +1,27 @@
+---
+version: '3.8'
+services:
+  phy-cluster-ui:
+    image: "phy-cluster-ui"
+    container_name: "phy-cluster-ui"
+    hostname: "phy-cluster-ui"
+    build:
+      context: ..
+      dockerfile: "development/Dockerfile"
+    volumes:
+      - "..:/app:cached"
+      - "~/dev/work/sap/backups:/backups"
+    env_file:
+      - "dev.env"
+      - "creds.env"
+    depends_on:
+      phy-cluster-db:
+        condition: "service_healthy"
+      phy-cluster-redis:
+        condition: "service_started"
+    ports:
+      - "8080:8080"
+
+volumes:
+  app_data: {}
+  backup_data: {}

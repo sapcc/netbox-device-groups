@@ -1,0 +1,82 @@
+{
+	"folders": [
+		{
+			"name": "Physical Clusters - A Netbox Plugin.",
+			"path": ".",
+		}
+	],
+	"settings": {
+		"flake8.args": [
+			"--config=.flake8"
+		],
+		"[python]": {
+			"editor.defaultFormatter": "ms-python.black-formatter",
+			"editor.formatOnSave": true
+		},
+		"python.analysis.extraPaths": [
+            // We recommend having the source code for netbox in a local folder checked out
+			// with tag matching the release for which you are developing as this helps VSCode
+			// with reerences for intellisense
+			// i,e,
+			//     git clone https://github.com/netbox-community/netbox.git ; cd netbox
+			//     git checkout tags/v3.5.9 -b v3.5.9-branch
+
+			"../netbox/netbox/"
+		],
+		"python.languageServer": "Pylance",
+		"cSpell.words": [
+			"appendonly",
+			"clearcache",
+			"clearsessions",
+			"clustertype",
+			"collectstatic",
+			"colors",
+			"contenttypes",
+			"creds",
+			"DCIM",
+			"Dockerised",
+			"extclustertype",
+			"filterset",
+			"filtersets",
+			"graphiql",
+			"healthcheck",
+			"ipam",
+			"jobresult",
+			"makemigrations",
+			"mkdocs",
+			"netbox",
+			"Netbox",
+			"nohighlight",
+			"physicalcluster",
+			"physicalclustertype",
+			"prechange",
+			"pydocstyle",
+			"pypoetry",
+			"pyproject",
+			"Quickstart",
+			"reindex",
+			"requirepass",
+			"runserver",
+			"taggit",
+			"venv",
+			"Viewset",
+			"viewsets",
+			"virtualenv",
+			"virtualenvs",
+			"virtualmachine",
+			"webserver"
+		],
+		"cSpell.ignorePaths": [
+			"**/.git/objects/**",
+			"CODEOWNERS",
+			"data",
+			"**.code-workspace",
+			"**.env",
+			"tasks.py",
+			"conf.yml",
+			"mkdocs.yml",
+			"pyproject.toml"
+		],
+		"cSpell.language": "en-GB",
+	}
+}

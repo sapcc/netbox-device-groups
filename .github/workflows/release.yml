@@ -1,0 +1,36 @@
+---
+name: "Release"
+on:
+  release:
+    types: ["released"]
+
+jobs:
+  # Ensure CI has passed
+  ci:
+    uses: sapcc/netbox-physical-clusters/.github/workflows/ci.yml@main
+  # Publish to  pypi
+  publish_python:
+    name: "Publish Python Packages"
+    runs-on: "ubuntu-22.04"
+    steps:
+      - name: "Check out repository code"
+        uses: "actions/checkout@v2"
+      - name: "Set up Python"
+        uses: "actions/setup-python@v2"
+        with:
+          python-version: "3.11"
+      - name: "Install Python Packages"
+        run: "pip install poetry"
+      - name: "Configure Poetry"
+        run: "poetry config virtualenvs.create false && poetry config installer.parallel false"
+      - name: "Install Dependencies (needed for mkdocs)"
+        run: "poetry install --no-root"
+      - name: "Build Documentation"
+        run: "poetry run mkdocs gh-deploy --no-directory-urls --strict"
+      - name: "Run Poetry Build"
+        run: "poetry build"
+      - name: "Push to PyPI"
+        uses: "pypa/gh-action-pypi-publish@release/v1"
+        with:
+          user: "__token__"
+          password: "${{ secrets.PYPI_API_TOKEN }}"

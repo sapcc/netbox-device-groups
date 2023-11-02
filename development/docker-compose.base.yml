@@ -1,0 +1,28 @@
+---
+x-netbox-build: &netbox-build
+    build:
+      args:
+        NETBOX_VER: "${NETBOX_VER}"
+        PYTHON_VER: "${PYTHON_VER}"
+      context: ..
+      dockerfile: "development/Dockerfile"
+
+x-netbox-base: &netbox-base
+  image: "phy-cluster-ui"
+  container_name: "phy-cluster-ui"
+  hostname: "phy-cluster-ui"
+  env_file:
+    - "dev.env"
+    - "creds.env"
+  tty: true
+
+
+version: '3.8'
+services:
+  phy-cluster-ui:
+    depends_on:
+      phy-cluster-db:
+        condition: "service_healthy"
+      phy-cluster-redis:
+        condition: "service_started"
+    <<: [*netbox-build, *netbox-base]
