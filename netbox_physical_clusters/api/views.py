@@ -14,9 +14,20 @@ from . import serializers
 
 
 def get_version(request):
-    """Returns the version of the plugin"""
+    """Returns the version of the plugi."""
     config = PhysicalClusterConfig
-    return JsonResponse({config.name: {"verbose_name": config.verbose_name,"description": config.description,"author": config.author,"author_email": config.author_email,"version": config.version,"min_netbox_version": config.min_version}})
+    return JsonResponse(
+        {
+            config.name: {
+                "verbose_name": config.verbose_name,
+                "description": config.description,
+                "author": config.author,
+                "author_email": config.author_email,
+                "version": config.version,
+                "min_netbox_version": config.min_version,
+            }
+        }
+    )
 
 
 class PhysicalClusterRootView(APIRootView):

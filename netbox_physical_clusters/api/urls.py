@@ -12,7 +12,7 @@ router.register("cluster-types", views.PhysicalClusterTypeViewSet)
 router.register("clusters", views.PhysicalClusterViewSet)
 
 urlpatterns = [
-    path('version/', views.get_version),
+    path("version/", views.get_version),
 ]
 
 
