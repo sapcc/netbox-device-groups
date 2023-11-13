@@ -7,7 +7,7 @@ on:
 jobs:
   # Ensure CI has passed
   ci:
-    uses: sapcc/netbox-physical-clusters/.github/workflows/ci.yml@main
+    uses: sapcc/netbox-device-groups/.github/workflows/ci.yml@main
   # Publish to  pypi
   publish_python:
     name: "Publish Python Packages"

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-A physical cluster represents a logical grouping of physical resources within which shared services will run. Physical devices may be associated with clusters as server hosts, network devices, and storage arrays. This plugin will allow users to track in which cluster(s) a particular device may reside.
+A device group represents a logical grouping of physical resources within which shared services will run. Physical devices may be associated with clusters as server hosts, network devices, and storage arrays. This plugin will allow users to track in which cluster(s) a particular device may reside.
 
 ### Intended Audience and Reading suggestions
 
@@ -35,7 +35,7 @@ A physical cluster represents a logical grouping of physical resources within wh
 
 ```mermaid
 ---
-title: Physical Clusters ERD
+title: Device Groups ERD
 ---
 erDiagram
     CLUSTER ||--|{ CLUSTER_TYPE : contains

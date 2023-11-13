@@ -210,7 +210,7 @@
         }
     },
     {
-        "model": "netbox_physical_clusters.physicalclustertype",
+        "model": "netbox_device_groups.devicegrouptype",
         "pk": 1,
         "fields": {
             "created": "2023-09-20T13:18:59.141Z",
@@ -221,7 +221,7 @@
         }
     },
     {
-        "model": "netbox_physical_clusters.physicalclustertype",
+        "model": "netbox_device_groups.devicegrouptype",
         "pk": 2,
         "fields": {
             "created": "2023-09-20T13:21:15.222Z",
@@ -232,7 +232,7 @@
         }
     },
     {
-        "model": "netbox_physical_clusters.physicalclustertype",
+        "model": "netbox_device_groups.devicegrouptype",
         "pk": 3,
         "fields": {
             "created": "2023-09-20T13:21:15.222Z",
@@ -243,7 +243,7 @@
         }
     },
     {
-        "model": "netbox_physical_clusters.physicalclustertype",
+        "model": "netbox_device_groups.devicegrouptype",
         "pk": 4,
         "fields": {
             "created": "2023-09-20T13:21:15.222Z",

@@ -8,9 +8,9 @@ x-netbox-build: &netbox-build
       dockerfile: "development/Dockerfile"
 
 x-netbox-base: &netbox-base
-  image: "phy-cluster-ui"
-  container_name: "phy-cluster-ui"
-  hostname: "phy-cluster-ui"
+  image: "device-grp-ui"
+  container_name: "device-grp-ui"
+  hostname: "device-grp-ui"
   env_file:
     - "dev.env"
     - "creds.env"
@@ -19,10 +19,10 @@ x-netbox-base: &netbox-base
 
 version: '3.8'
 services:
-  phy-cluster-ui:
+  device-grp-ui:
     depends_on:
-      phy-cluster-db:
+      device-grp-db:
         condition: "service_healthy"
-      phy-cluster-redis:
+      device-grp-redis:
         condition: "service_started"
     <<: [*netbox-build, *netbox-base]

@@ -8,11 +8,11 @@ To uninstall the plugin, remove/comment out the configuration entries for the pl
 
 ```python
 PLUGINS = [
-    #"netbox_physical_clusters",
+    #"netbox_device_groups",
     'other plugins here',
 ]
 PLUGINS_CONFIG = {
-    # "netbox_physical_clusters": {
+    # "netbox_device_groups": {
     #     "USERNAME": "foo",
     #     "PASSWORD": "bar",
     # }

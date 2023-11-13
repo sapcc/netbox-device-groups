@@ -1,10 +1,10 @@
 ---
 version: '3.8'
 services:
-  phy-cluster-ui:
-    image: "phy-cluster-ui"
-    container_name: "phy-cluster-ui"
-    hostname: "phy-cluster-ui"
+  device-grp-ui:
+    image: "device-grp-ui"
+    container_name: "device-grp-ui"
+    hostname: "device-grp-ui"
     build:
       context: ..
       dockerfile: "development/Dockerfile"
@@ -15,9 +15,9 @@ services:
       - "dev.env"
       - "creds.env"
     depends_on:
-      phy-cluster-db:
+      device-grp-db:
         condition: "service_healthy"
-      phy-cluster-redis:
+      device-grp-redis:
         condition: "service_started"
     ports:
       - "8080:8080"

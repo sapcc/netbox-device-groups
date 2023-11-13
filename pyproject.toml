@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "netbox-physical-clusters"
-version = "0.2.3"
+name = "netbox-device-groups"
+version = "0.2.1"
 authors = ["Pat McLean <patrick.mclean@sap.com>", "The Fail Druid <faildruid@ahra.ie"]
 readme = "README.md"
 keywords = ["Netbox", "netbox", "plugin"]
-description = "A netbox plugin for managing multiple physical cluster types"
+description = "A netbox plugin for managing multiple device group types"
 classifiers = [
     "Intended Audience :: Developers",
     "Development Status :: 5 - Production/Stable",
@@ -14,12 +14,12 @@ classifiers = [
     "License :: OSI Approved :: Apache Software License",
     "Operating System :: OS Independent",
 ]
-homepage = "https://github.com/sapcc/netbox-physical-clusters"
-documentation = "https://sapcc.github.io/netbox-physical-clusters"
+homepage = "https://github.com/sapcc/netbox-device-groups"
+documentation = "https://sapcc.github.io/netbox-device-groups"
 
 
 packages = [
-    {include = "netbox_physical_clusters"},
+    {include = "netbox_device_groups"},
 ]
 
 

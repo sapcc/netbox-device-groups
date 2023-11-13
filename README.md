@@ -1,11 +1,11 @@
 
-A netbox plugin for managing multiple cluster types by site
+A netbox plugin for managing multiple device group types by site
 
-<a href="https://github.com/sapcc/netbox-physical-clusters/forks"><img src="https://img.shields.io/github/forks/sapcc/netbox-physical-clusters" alt="Forks Badge"/></a>
-<a href="https://github.com/sapcc/netbox-physical-clusters/pulls"><img src="https://img.shields.io/github/issues-pr/sapcc/netbox-physical-clusters" alt="Pull Requests Badge"/></a>
-<a href="https://github.com/sapcc/netbox-physical-clusters/issues"><img src="https://img.shields.io/github/issues/sapcc/netbox-physical-clusters" alt="Issues Badge"/></a>
-<a href="https://github.com/sapcc/netbox-physical-clusters/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/sapcc/netbox-physical-clusters?color=2b9348"></a>
-<a href="https://github.com/sapcc/netbox-physical-clusters/blob/master/LICENSE"><img src="https://img.shields.io/github/license/sapcc/netbox-physical-clusters?color=2b9348" alt="License Badge"/></a>
+<a href="https://github.com/sapcc/netbox-device-groups/forks"><img src="https://img.shields.io/github/forks/sapcc/netbox-device-groups" alt="Forks Badge"/></a>
+<a href="https://github.com/sapcc/netbox-device-groups/pulls"><img src="https://img.shields.io/github/issues-pr/sapcc/netbox-device-groups" alt="Pull Requests Badge"/></a>
+<a href="https://github.com/sapcc/netbox-device-groups/issues"><img src="https://img.shields.io/github/issues/sapcc/netbox-device-groups" alt="Issues Badge"/></a>
+<a href="https://github.com/sapcc/netbox-device-groups/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/sapcc/netbox-device-groups?color=2b9348"></a>
+<a href="https://github.com/sapcc/netbox-device-groups/blob/master/LICENSE"><img src="https://img.shields.io/github/license/sapcc/netbox-device-groups?color=2b9348" alt="License Badge"/></a>
 
 ## Installing the Plugin in Netbox
 
@@ -17,28 +17,28 @@ A netbox plugin for managing multiple cluster types by site
 
 ### Install Guide
 
-> NOTE: Plugins can be installed manually or using Python's `pip`. See the [netbox documentation](https://docs.netbox.dev/en/stable/plugins/) for more details. The pip package name for this plugin is [`netbox-physical-clusters`](https://pypi.org/project/netbox-physical-clusters/).
+> NOTE: Plugins can be installed manually or using Python's `pip`. See the [netbox documentation](https://docs.netbox.dev/en/stable/plugins/) for more details. The pip package name for this plugin is [`netbox-device-groups`](https://pypi.org/project/netbox-device-groups/).
 
 The plugin is available as a Python package via PyPI and can be installed with `pip`:
 
 ```shell
-pip install netbox-physical-clusters
+pip install netbox-device-groups
 ```
 
-To ensure the device cluster plugin is automatically re-installed during future upgrades, create a file named `local_requirements.txt` (if not already existing) in the Netbox root directory (alongside `requirements.txt`) and list the `netbox_physical_clusters` package:
+To ensure the device cluster plugin is automatically re-installed during future upgrades, create a file named `local_requirements.txt` (if not already existing) in the Netbox root directory (alongside `requirements.txt`) and list the `netbox_device_groups` package:
 
 ```shell
-echo netbox-physical-clusters >> local_requirements.txt
+echo netbox-device-groups >> local_requirements.txt
 ```
 
 Once installed, the plugin needs to be enabled in your Netbox configuration. The following block of code below shows the additional configuration required to be added to your `$NETBOX_ROOT/netbox/configuration.py` file:
 
-- Append `"netbox_physical_clusters"` to the `PLUGINS` list.
-- Append the `"netbox_physical_clusters"` dictionary to the `PLUGINS_CONFIG` dictionary and override any defaults.
+- Append `"netbox_device_groups"` to the `PLUGINS` list.
+- Append the `"netbox_device_groups"` dictionary to the `PLUGINS_CONFIG` dictionary and override any defaults.
 
 ```python
 PLUGINS = [
-    "netbox_physical_clusters",
+    "netbox_device_groups",
 ]
 ```
 

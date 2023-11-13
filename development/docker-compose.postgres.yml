@@ -1,9 +1,9 @@
 version: '3.8'
 services:
-  phy-cluster-db:
+  device-grp-db:
     image: "postgres:15.4-alpine"
-    container_name: "phy-cluster-db"
-    hostname: "phy-cluster-db"
+    container_name: "device-grp-db"
+    hostname: "device-grp-db"
     env_file:
       - "dev.env"
       - "creds.env"

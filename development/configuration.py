@@ -5,7 +5,7 @@ import os
 # Development  settings #
 #                       #
 #########################
-BANNER_TOP = "Netbox Plugin - Physical Clusters"
+BANNER_TOP = "Netbox Plugin - Device Groups"
 BANNER_BOTTOM = BANNER_TOP
 BANNER_LOGIN = BANNER_TOP
 LOGIN_REQUIRED = False
@@ -57,10 +57,10 @@ DEVELOPER = True
 INTERNAL_IPS = ("0.0.0.0", "127.0.0.1", "::1")
 
 PLUGINS = [
-    "netbox_physical_clusters",
+    "netbox_device_groups",
 ]
 PLUGINS_CONFIG = {
-    # "netbox_physical_clusters": {
+    # "netbox_device_groups": {
     #     "USERNAME": "foo",
     #     "PASSWORD": "bar",
     # }

@@ -1,7 +1,7 @@
 {
 	"folders": [
 		{
-			"name": "Physical Clusters - A Netbox Plugin.",
+			"name": "Device Groups - A Netbox Plugin.",
 			"path": ".",
 		}
 	],
@@ -47,8 +47,8 @@
 			"netbox",
 			"Netbox",
 			"nohighlight",
-			"physicalcluster",
-			"physicalclustertype",
+			"devicegroup",
+			"devicegrouptype",
 			"prechange",
 			"pydocstyle",
 			"pypoetry",

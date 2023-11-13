@@ -14,31 +14,31 @@ No external systems access is required to use this plugin.
 ## Install Guide
 
 !!! note
-    Plugins can be installed manually or using Python's `pip`. See the [netbox documentation](https://docs.netbox.dev/en/stable/plugins/) for more details. The pip package name for this plugin is [`netbox_physical_clusters`](https://pypi.org/project/netbox_physical_clusters/).
+    Plugins can be installed manually or using Python's `pip`. See the [netbox documentation](https://docs.netbox.dev/en/stable/plugins/) for more details. The pip package name for this plugin is [`netbox_device_groups`](https://pypi.org/project/netbox_device_groups/).
 
 The plugin is available as a Python package via PyPI and can be installed with `pip`:
 
 ```shell
-pip install netbox-physical-clusters
+pip install netbox-device-groups
 ```
 
-To ensure the physical cluster plugin is automatically re-installed during future upgrades, create a file named `local_requirements.txt` (if not already existing) in the Netbox root directory (alongside `requirements.txt`) and list the `netbox_physical_clusters` package:
+To ensure the device group plugin is automatically re-installed during future upgrades, create a file named `local_requirements.txt` (if not already existing) in the Netbox root directory (alongside `requirements.txt`) and list the `netbox_device_groups` package:
 
 ```shell
-echo netbox-physical-clusters >> local_requirements.txt
+echo netbox-device-groups >> local_requirements.txt
 ```
 
 Once installed, the plugin needs to be enabled in your Netbox configuration. The following block of code below shows the additional configuration required to be added to your `$NETBOX_ROOT/netbox/configuration.py` file:
 
-- Append `"netbox_physical_clusters"` to the `PLUGINS` list.
-- Append the `"netbox_physical_clusters"` dictionary to the `PLUGINS_CONFIG` dictionary and override any defaults.
+- Append `"netbox_device_groups"` to the `PLUGINS` list.
+- Append the `"netbox_device_groups"` dictionary to the `PLUGINS_CONFIG` dictionary and override any defaults.
 
 ```python
 PLUGINS = [
-    "netbox_physical_clusters",
+    "netbox_device_groups",
 ]
 PLUGINS_CONFIG = {
-    "netbox_physical_clusters": {
+    "netbox_device_groups": {
         "USERNAME": "foo",
         "PASSWORD": "bar",
     }
@@ -85,6 +85,6 @@ There are four core actions that can be permitted for each type of object within
 - __Change__ - Modify an existing object
 - __Delete__ - Delete an existing object
 
-On the Permissions admin page, choose the actions you require, and assign them to the __Netbox Physical Clusters__ objects, then assign a group or user to the permission.
+On the Permissions admin page, choose the actions you require, and assign them to the __Netbox Device Groups__ objects, then assign a group or user to the permission.
 
 ![alt text](img/permissions.png){{: style="height:40%;width:40%;"}
