@@ -49,7 +49,7 @@ menu_buttons = (
 )
 
 menu = PluginMenu(
-    label="SAP",
+    label="Device Groups",
     groups=(("Device Groups", menu_buttons),),
     icon_class="mdi mdi-black-mesa",
 )

@@ -26,4 +26,4 @@ Now run the [post install steps](install.md/#post-install-steps) to clear the pl
 
 ## Database Clean-up
 
-To ensure the database is clean after the plugin is removed is removed, drop all tables created by the plugin: `physical_clusters_*`.
+To ensure the database is clean after the plugin is removed is removed, drop all objects created by the plugin: `netbox_device_groups*`.

@@ -10,15 +10,15 @@ from netbox_device_groups import models
 class TestDeviceGroupTypeObjects(TestCase):
     """Test DeviceGroupType model."""
 
-    def test_create_physical_cluster_type_valid(self):
+    def test_create_device_group_type_valid(self):
         """Successfully create various DeviceGroupType records."""
 
-        physical_cluster1 = models.DeviceGroupType(name="Test Type One", description="Test Type One")
-        physical_cluster1.validated_save()
-        physical_cluster2 = models.DeviceGroupType(name="Test Type Two", description="Test Type Row")
-        physical_cluster2.validated_save()
+        device_group1 = models.DeviceGroupType(name="Test Type One", description="Test Type One")
+        device_group1.validated_save()
+        device_group2 = models.DeviceGroupType(name="Test Type Two", description="Test Type Row")
+        device_group2.validated_save()
 
-    def test_create_physical_cluster_type_invalid_duplicate_name(self):
+    def test_create_device_group_type_invalid_duplicate_name(self):
         """Only one DeviceGroupType with a given name can be created."""
 
         models.DeviceGroupType(name="Test Type One", description="Test Type One").validated_save()

@@ -257,8 +257,8 @@ Running docker-compose command "down"
  Container device-grp-docs  Stopped
  Container device-grp-docs  Removing
  Container device-grp-docs  Removed
- Network physical_clusters_default  Removing
- Network physical_clusters_default  Removed
+ Network netbox_device_groups_default  Removing
+ Network netbox_device_groups_default  Removed
 ```
 
 This will safely shut down all of your running Docker containers for this project. When you are ready to spin containers back up, it is as simple as running `invoke start` again [as seen previously](#starting-the-development-environment).

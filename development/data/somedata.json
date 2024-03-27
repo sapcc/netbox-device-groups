@@ -1,0 +1,44 @@
+[
+    {
+        "model": "netbox_device_groups.devicegrouptype",
+        "fields": {
+            "created": "2024-04-04T21:20:54.469Z",
+            "last_updated": "2024-04-04T21:20:54.469Z",
+            "custom_field_data": {},
+            "name": "FAS2750",
+            "description": "NetApp Filer FAS2750",
+            "comments": ""
+        }
+    },
+    {
+        "model": "netbox_device_groups.devicegrouptype",
+        "fields": {
+            "created": "2024-04-04T21:24:42.086Z",
+            "last_updated": "2024-04-04T21:24:42.086Z",
+            "custom_field_data": {},
+            "name": "FAS8040",
+            "description": "NetApp Filer FAS8040",
+            "comments": ""
+        }
+    },
+    {
+        "model": "netbox_device_groups.devicegroup",
+        "fields": {
+            "created": "2024-04-04T21:21:36.295Z",
+            "last_updated": "2024-04-04T21:24:56.485Z",
+            "custom_field_data": {},
+            "name": "stnpa3",
+            "description": "",
+            "comments": "",
+            "cluster_type": 3,
+            "status": "planned",
+            "tenant": 12,
+            "site": 20,
+            "primary_ip4": null,
+            "devices": [
+                1278,
+                1279
+            ]
+        }
+    }
+]

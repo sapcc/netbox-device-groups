@@ -24,8 +24,9 @@ namespace = Collection("netbox_device_group")
 namespace.configure(
     {
         "netbox_device_group": {
-            "netbox_ver": "3.5.9",
+            "netbox_ver": "3.7.4",
             "python_ver": "3.10",
+            "poetry_ver": "1.8.2",
             "project_name": "netbox_device_groups",
             "local": False,
             "compose_dir": os.path.join(os.path.dirname(__file__), "development"),
@@ -74,6 +75,7 @@ def docker_compose(context, command, **kwargs):
         "COMPOSE_HTTP_TIMEOUT": context.netbox_device_group.compose_http_timeout,
         "NETBOX_VER": context.netbox_device_group.netbox_ver,
         "PYTHON_VER": context.netbox_device_group.python_ver,
+        "POETRY_VER": context.netbox_device_group.poetry_ver,
     }
     compose_command = f'docker-compose --project-name {context.netbox_device_group.project_name} \
         --project-directory "{context.netbox_device_group.compose_dir}"'
@@ -186,7 +188,7 @@ def vscode(context):
         "tail": "Tail N number of lines or 'all'",
     }
 )
-def logs(context, service="netbox", follow=False, tail=None):
+def logs(context, service="device-grp-ui", follow=False, tail=None):
     """View the logs of a docker-compose service."""
     command = "logs "
 
