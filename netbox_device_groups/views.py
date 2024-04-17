@@ -116,7 +116,7 @@ class DeviceGroupDevicesView(generic.ObjectChildrenView):
     child_model = Device
     table = DeviceTable
     filterset = DeviceFilterSet
-    template_name = "netbox_device_groups/physical_cluster/devices.html"
+    template_name = "netbox_device_groups/device_group/devices.html"
     actions = ("add", "import", "export", "bulk_edit", "bulk_remove_devices")
     action_perms = defaultdict(
         set,

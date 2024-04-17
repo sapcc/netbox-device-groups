@@ -4,6 +4,7 @@ x-netbox-build: &netbox-build
       args:
         NETBOX_VER: "${NETBOX_VER}"
         PYTHON_VER: "${PYTHON_VER}"
+        POETRY_VER: "${POETRY_VER}"
       context: ..
       dockerfile: "development/Dockerfile"
 

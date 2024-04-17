@@ -5,8 +5,23 @@
 set -e
 
 # Give time for the database server to initialize
-echo "⏳ Waiting 10 seconds for the database server to initialize"
-sleep 10s
+echo "⏳ Waiting 3 seconds for the database server to initialize"
+sleep 3
+
+#If there is database backup file to restore, restore the database.
+BACKUP_FILE="/app/development/backup/netbox.bkp"
+
+if [ -e $BACKUP_FILE ]; then
+    echo "💡 We have a database backup file $BACKUP_FILE to restore"
+    psql -t -U $NETBOX_DB_USER -h $NETBOX_DB_HOST -d $NETBOX_DB_NAME -f development/backup/test_db.sql | sed -e 's/^[[:space:]]*//' | sed 's/\r$//' > /app/development/backup/tables.out
+    read -r has_data < /app/development/backup/tables.out
+    if [ "$has_data" = "0" ] ; then
+        echo "⏳ The Netbox database needs to be restored, restoring."
+        pg_restore -U $NETBOX_DB_USER -h $NETBOX_DB_HOST -d $NETBOX_DB_NAME $BACKUP_FILE
+    else
+        echo "💡 The Netbox database has already been restored, continuing."
+    fi
+fi
 
 cd "$NETBOX_HOME"
 cp /app/development/netbox_dev.svg /opt/netbox/netbox/project-static/img/netbox_logo.svg

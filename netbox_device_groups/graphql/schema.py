@@ -11,8 +11,8 @@ from netbox_device_groups import models
 class DeviceGroupTypeQuery(graphene.ObjectType):
     """Query Definition fo the DeviceGroupType."""
 
-    physical_cluster_type = ObjectField(DeviceGroupTypeType)
-    physical_cluster_type_list = ObjectListField(DeviceGroupTypeType)
+    device_group_type = ObjectField(DeviceGroupTypeType)
+    device_group_type_list = ObjectListField(DeviceGroupTypeType)
 
     def resolve_cluster_type_list(root, info, **kwargs):
         """Optimize database access inside graphene queries."""
@@ -22,5 +22,5 @@ class DeviceGroupTypeQuery(graphene.ObjectType):
 class DeviceGroupQuery(graphene.ObjectType):
     """Query Definition fo the DeviceGroup."""
 
-    physical_cluster_type = ObjectField(DeviceGroupType)
-    physical_cluster_type_list = ObjectListField(DeviceGroupType)
+    device_group_type = ObjectField(DeviceGroupType)
+    device_group_type_list = ObjectListField(DeviceGroupType)

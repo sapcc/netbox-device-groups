@@ -15,15 +15,15 @@ __all__ = ("DeviceGroup",)
 class DeviceGroup(PluginBaseModel):
     """A cluster of physical devices. Each Cluster may optionally be associated with one or more Devices."""
 
-    cluster_type = models.ForeignKey(to=DeviceGroupType, on_delete=models.PROTECT, related_name="physical_clusters")
+    cluster_type = models.ForeignKey(to=DeviceGroupType, on_delete=models.PROTECT, related_name="device_groups")
     status = models.CharField(
         max_length=50, choices=DeviceGroupStatusChoices, default=DeviceGroupStatusChoices.STATUS_PLANNED
     )
     tenant = models.ForeignKey(
-        to="tenancy.Tenant", on_delete=models.PROTECT, related_name="physical_clusters", blank=True, null=True
+        to="tenancy.Tenant", on_delete=models.PROTECT, related_name="device_groups", blank=True, null=True
     )
     site = models.ForeignKey(
-        to="dcim.Site", on_delete=models.PROTECT, related_name="physical_clusters", blank=True, null=True
+        to="dcim.Site", on_delete=models.PROTECT, related_name="device_groups", blank=True, null=True
     )
     devices = models.ManyToManyField(Device)
     primary_ip4 = models.OneToOneField(

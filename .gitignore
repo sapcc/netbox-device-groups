@@ -164,3 +164,9 @@ Temporary Items
 ### macOS Patch ###
 # iCloud generated files
 *.icloud
+
+## PostgreSQL backup
+*.bkp
+*.gz
+*.bz2
+tables.out
