@@ -1,4 +1,5 @@
 """Define the views for this plugin."""
+
 from collections import defaultdict
 
 from django.contrib import messages
@@ -30,7 +31,7 @@ class DeviceGroupTypeListView(generic.ObjectListView):
     Return a list of device group Types
     """
 
-    queryset = DeviceGroupType.objects.annotate(cluster_count=count_related(DeviceGroup, "cluster_type"))
+    queryset = DeviceGroupType.objects.annotate(device_group_count=count_related(DeviceGroup, "device_group_type"))
     filterset = filtersets.DeviceGroupTypeFilterSet
     filterset_form = forms.DeviceGroupTypeFilterForm
     table = tables.DeviceGroupTypeTable
@@ -72,7 +73,7 @@ class DeviceGroupTypeBulkImportView(generic.BulkImportView):
 class DeviceGroupTypeBulkEditView(generic.BulkEditView):
     """DeviceGroup Type view.for Bulk Editing."""
 
-    queryset = DeviceGroupType.objects.annotate(cluster_count=count_related(DeviceGroup, "cluster_type"))
+    queryset = DeviceGroupType.objects.annotate(device_group_count=count_related(DeviceGroup, "device_group_type"))
     filterset = filtersets.DeviceGroupTypeFilterSet
     table = tables.DeviceGroupTypeTable
     form = forms.DeviceGroupTypeBulkEditForm
@@ -81,7 +82,7 @@ class DeviceGroupTypeBulkEditView(generic.BulkEditView):
 class DeviceGroupTypeBulkDeleteView(generic.BulkDeleteView):
     """DeviceGroup Type view.for bulk deletion."""
 
-    queryset = DeviceGroupType.objects.annotate(cluster_count=count_related(DeviceGroup, "cluster_type"))
+    queryset = DeviceGroupType.objects.annotate(device_group_count=count_related(DeviceGroup, "device_group_type"))
     filterset = filtersets.DeviceGroupTypeFilterSet
     table = tables.DeviceGroupTypeTable
 
@@ -184,7 +185,7 @@ class DeviceGroupAddDevicesView(generic.ObjectEditView):
 
     queryset = DeviceGroup.objects.all()
     form = forms.DeviceGroupAddDevicesForm
-    template_name = "netbox_device_groups/cluster_add_devices.html"
+    template_name = "netbox_device_groups/devicegroup_add_devices.html"
 
     def get(self, request, pk):
         """Retrieve device list."""

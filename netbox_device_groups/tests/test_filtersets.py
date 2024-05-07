@@ -16,12 +16,12 @@ class DeviceGroupTypeTestCase(TestCase, ChangeLoggedFilterSetTests):
 
     @classmethod
     def setUpTestData(cls):
-        cluster_types = (
+        device_group_types = (
             DeviceGroupType(name="Test Type 1", description="cluster-type-1"),
             DeviceGroupType(name="Test Type 2", description="cluster-type-2"),
             DeviceGroupType(name="Test Type 3", description="cluster-type-3"),
         )
-        DeviceGroupType.objects.bulk_create(cluster_types)
+        DeviceGroupType.objects.bulk_create(device_group_types)
 
     def test_name(self):
         params = {"name": ["Test Type 1", "Test Type 2"]}
@@ -38,12 +38,12 @@ class DeviceGroupTestCase(TestCase, ChangeLoggedFilterSetTests):
 
     @classmethod
     def setUpTestData(cls):
-        cluster_types = (
+        device_group_types = (
             DeviceGroupType(name="Device Group Type 1", description="cluster-type-1"),
             DeviceGroupType(name="Device Group Type 2", description="cluster-type-2"),
             DeviceGroupType(name="Device Group Type 3", description="cluster-type-3"),
         )
-        DeviceGroupType.objects.bulk_create(cluster_types)
+        DeviceGroupType.objects.bulk_create(device_group_types)
 
         regions = (
             Region(name="Test Region 1", slug="test-region-1"),
@@ -94,7 +94,7 @@ class DeviceGroupTestCase(TestCase, ChangeLoggedFilterSetTests):
         clusters = (
             DeviceGroup(
                 name="Cluster 1",
-                cluster_type=cluster_types[0],
+                device_group_type=device_group_types[0],
                 status=DeviceGroupStatusChoices.STATUS_PLANNED,
                 site=sites[0],
                 tenant=tenants[0],
@@ -102,7 +102,7 @@ class DeviceGroupTestCase(TestCase, ChangeLoggedFilterSetTests):
             ),
             DeviceGroup(
                 name="Cluster 2",
-                cluster_type=cluster_types[1],
+                device_group_type=device_group_types[1],
                 status=DeviceGroupStatusChoices.STATUS_STAGING,
                 site=sites[1],
                 tenant=tenants[1],
@@ -110,7 +110,7 @@ class DeviceGroupTestCase(TestCase, ChangeLoggedFilterSetTests):
             ),
             DeviceGroup(
                 name="Cluster 3",
-                cluster_type=cluster_types[2],
+                device_group_type=device_group_types[2],
                 status=DeviceGroupStatusChoices.STATUS_ACTIVE,
                 site=sites[2],
                 tenant=tenants[2],
@@ -134,7 +134,7 @@ class DeviceGroupTestCase(TestCase, ChangeLoggedFilterSetTests):
 
     def test_type(self):
         types = DeviceGroupType.objects.all()[:2]
-        params = {"cluster_type_id": [types[0].pk, types[1].pk]}
+        params = {"device_group_type_id": [types[0].pk, types[1].pk]}
         self.assertEqual(self.filterset(params, self.queryset).qs.count(), 2)
 
     def test_tenant(self):

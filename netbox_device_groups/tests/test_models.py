@@ -31,10 +31,10 @@ class TestDeviceGroupObjects(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        cluster_type = models.DeviceGroupType.objects.create(
+        device_group_type = models.DeviceGroupType.objects.create(
             name="DeviceDevice Group Type 1", description="cluster-type-1"
         )
-        models.DeviceGroup.objects.create(name="DeviceCluster 1", cluster_type=cluster_type)
+        models.DeviceGroup.objects.create(name="DeviceCluster 1", device_group_type=device_group_type)
 
     def test_create_cluster(self):
         manufacturer = Manufacturer.objects.create(name="Manufacturer 1", slug="manufacturer-1")

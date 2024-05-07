@@ -14,7 +14,7 @@ class DeviceGroupTypeQuery(graphene.ObjectType):
     device_group_type = ObjectField(DeviceGroupTypeType)
     device_group_type_list = ObjectListField(DeviceGroupTypeType)
 
-    def resolve_cluster_type_list(root, info, **kwargs):
+    def resolve_device_group_type_list(root, info, **kwargs):
         """Optimize database access inside graphene queries."""
         return gql_query_optimizer(models.DeviceGroupType.objects.all(), info)
 

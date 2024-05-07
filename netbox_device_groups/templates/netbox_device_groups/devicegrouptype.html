@@ -6,8 +6,8 @@
 
 {% block extra_controls %}
   {% if perms.netbox_device_groups.add_devicegroup %}
-    <a href="{% url 'plugins:netbox_device_groups:devicegroup_add' %}?cluster_type={{ object.pk }}" class="btn btn-sm btn-primary">
-      <span class="mdi mdi-plus-thick" aria-hidden="true"></span> {% trans "Add Cluster" %}
+    <a href="{% url 'plugins:netbox_device_groups:devicegroup_add' %}?device_group_type={{ object.pk }}" class="btn btn-sm btn-primary">
+      <span class="mdi mdi-plus-thick" aria-hidden="true"></span> {% trans "Add Device Group" %}
     </a>
   {% endif %}
 {% endblock extra_controls %}
@@ -30,9 +30,9 @@
             <td>{{ object.description|placeholder }}</td>
           </tr>
           <tr>
-            <th scope="row">{% trans "Clusters" %}</th>
+            <th scope="row">{% trans "Device Groups" %}</th>
             <td>
-              <a href="{% url 'plugins:netbox_device_groups:devicegroup_list' %}?cluster_type_id={{ object.pk }}">{{ object.clusters.count }}</a>
+              <a href="{% url 'plugins:netbox_device_groups:devicegroup_list' %}?device_group_type_id={{ object.pk }}">{{ object.clusters.count }}</a>
             </td>
           </tr>
         </table>

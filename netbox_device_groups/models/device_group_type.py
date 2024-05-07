@@ -20,5 +20,5 @@ class DeviceGroupType(PluginBaseModel):
         return self.name
 
     def get_absolute_url(self):
-        """Returns the objects absolute url. i.e. clusters/cluster-type/2."""
+        """Returns the objects absolute url. i.e. evice-groups/device-group-types/3/."""
         return reverse("plugins:netbox_device_groups:devicegrouptype", args=[self.pk])

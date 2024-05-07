@@ -39,12 +39,12 @@ class DeviceGroupFilterSet(NetBoxModelFilterSet, TenancyFilterSet):
         label=_("Site (name)"),
     )
     status = django_filters.MultipleChoiceFilter(choices=DeviceGroupStatusChoices, null_value=None)
-    cluster_type_id = django_filters.ModelMultipleChoiceFilter(
+    device_group_type_id = django_filters.ModelMultipleChoiceFilter(
         queryset=DeviceGroupType.objects.all(),
         label=_("Cluster type (ID)"),
     )
-    cluster_type = django_filters.ModelMultipleChoiceFilter(
-        field_name="cluster_type__name",
+    device_group_type = django_filters.ModelMultipleChoiceFilter(
+        field_name="device_group_type__name",
         queryset=DeviceGroupType.objects.all(),
         to_field_name="name",
         label=_("Cluster type"),

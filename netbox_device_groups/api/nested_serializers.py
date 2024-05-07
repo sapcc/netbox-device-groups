@@ -24,17 +24,17 @@ __all__ = [
 
 
 @extend_schema_serializer(
-    exclude_fields=("cluster_count",),
+    exclude_fields=("device_group_count",),
 )
 class NestedDeviceGroupTypeSerializer(WritableNestedSerializer):
     """The Serializer to return a Type for a Cluster."""
 
     url = serializers.HyperlinkedIdentityField(view_name="plugins-api:netbox_device_groups-api:devicegrouptype-detail")
-    cluster_count = serializers.IntegerField(read_only=True)
+    device_group_count = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = DeviceGroupType
-        fields = ["id", "url", "display", "name", "cluster_count"]
+        fields = ["id", "url", "display", "name", "device_group_count"]
 
 
 @extend_schema_serializer()

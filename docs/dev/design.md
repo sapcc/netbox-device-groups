@@ -38,7 +38,7 @@ A device group represents a logical grouping of physical resources within which 
 title: Device Groups ERD
 ---
 erDiagram
-    CLUSTER ||--|{ CLUSTER_TYPE : contains
+    CLUSTER ||--|{ device_group_type : contains
     CLUSTER ||--|{ CLUSTER_NODES : contains
     CLUSTER_NODES ||--|{ DCIM_DEVICE : contains
 ```

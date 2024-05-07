@@ -51,7 +51,7 @@ class DeviceGroupTypeForm(NetBoxModelForm):
 class DeviceGroupForm(TenancyForm, NetBoxModelForm):
     """The form definition for adding device groups to the database."""
 
-    cluster_type = DynamicModelChoiceField(queryset=DeviceGroupType.objects.all(), selector=True)
+    device_group_type = DynamicModelChoiceField(queryset=DeviceGroupType.objects.all(), selector=True)
 
     site = DynamicModelChoiceField(queryset=Site.objects.all(), selector=True)
     status = forms.ChoiceField(
@@ -61,7 +61,7 @@ class DeviceGroupForm(TenancyForm, NetBoxModelForm):
         initial=DeviceGroupStatusChoices.STATUS_PLANNED,
     )
     fieldsets = (
-        (_("Device Group"), ("name", "cluster_type", "site", "status", "description", "tags")),
+        (_("Device Group"), ("name", "device_group_type", "site", "status", "description", "tags")),
         (_("Tenancy"), ("tenant_group", "tenant")),
     )
 
@@ -69,7 +69,7 @@ class DeviceGroupForm(TenancyForm, NetBoxModelForm):
         model = DeviceGroup
         fields = (
             "name",
-            "cluster_type",
+            "device_group_type",
             "status",
             "tenant",
             "site",

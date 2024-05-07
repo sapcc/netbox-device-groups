@@ -27,7 +27,7 @@ class DeviceGroupTypeImportForm(NetBoxModelImportForm):
 class DeviceGroupImportForm(NetBoxModelImportForm):
     """Bulk Import for Cluster."""
 
-    cluster_type = CSVModelChoiceField(
+    device_group_type = CSVModelChoiceField(
         queryset=DeviceGroupType.objects.all(), to_field_name="name", help_text=_("Type of cluster")
     )
     status = CSVChoiceField(choices=DeviceGroupStatusChoices, help_text=_("Operational status"))
@@ -40,4 +40,4 @@ class DeviceGroupImportForm(NetBoxModelImportForm):
 
     class Meta:
         model = DeviceGroup
-        fields = ("name", "cluster_type", "status", "site", "tenant", "description", "tags")
+        fields = ("name", "device_group_type", "status", "site", "tenant", "description", "tags")
