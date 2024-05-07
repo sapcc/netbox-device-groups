@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "netbox-device-groups"
-version = "0.2.1"
+version = "0.1.0"
 authors = ["Pat McLean <patrick.mclean@sap.com>", "The Fail Druid <faildruid@ahra.ie"]
 readme = "README.md"
 keywords = ["Netbox", "netbox", "plugin"]
