@@ -1,4 +1,5 @@
 """API routes for the plugin/."""
+
 from django.urls import path
 
 from netbox.api.routers import NetBoxRouter

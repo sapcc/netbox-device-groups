@@ -18,7 +18,6 @@ x-netbox-base: &netbox-base
   tty: true
 
 
-version: '3.8'
 services:
   device-grp-ui:
     depends_on:

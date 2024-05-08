@@ -1,4 +1,5 @@
 """Filtersets used by the Plugin Forms."""
+
 from django import forms
 from django.utils.translation import gettext as _
 
@@ -30,10 +31,10 @@ class DeviceGroupFilterForm(TenancyFilterForm, NetBoxModelFilterSetForm):
     model = DeviceGroup
     fieldsets = (
         (None, ("q", "filter_id", "tag")),
-        (_("Attributes"), ("cluster_type_id", "status")),
+        (_("Attributes"), ("device_group_type_id", "status")),
         (_("Site/Tenant"), ("site_id", "tenant_group_id", "tenant_id")),
     )
-    cluster_type_id = DynamicModelMultipleChoiceField(
+    device_group_type_id = DynamicModelMultipleChoiceField(
         queryset=DeviceGroupType.objects.all(), required=False, label=_("Type")
     )
     status = forms.MultipleChoiceField(choices=DeviceGroupStatusChoices, required=False)

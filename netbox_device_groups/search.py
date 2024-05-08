@@ -6,7 +6,7 @@ from netbox_device_groups import models
 
 @register_search
 class DeviceGroupIndex(SearchIndex):
-    """Define the Cluster search."""
+    """Define the Device Group search."""
 
     model = models.DeviceGroup
     fields = (

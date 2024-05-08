@@ -25,7 +25,7 @@ The plugin is available as a Python package via PyPI and can be installed with `
 pip install netbox-device-groups
 ```
 
-To ensure the device cluster plugin is automatically re-installed during future upgrades, create a file named `local_requirements.txt` (if not already existing) in the Netbox root directory (alongside `requirements.txt`) and list the `netbox_device_groups` package:
+To ensure the device group plugin is automatically re-installed during future upgrades, create a file named `local_requirements.txt` (if not already existing) in the Netbox root directory (alongside `requirements.txt`) and list the `netbox_device_groups` package:
 
 ```shell
 echo netbox-device-groups >> local_requirements.txt

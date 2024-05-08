@@ -1,4 +1,5 @@
 """Define the views for this plugin."""
+
 from collections import defaultdict
 
 from django.contrib import messages
@@ -30,7 +31,7 @@ class DeviceGroupTypeListView(generic.ObjectListView):
     Return a list of device group Types
     """
 
-    queryset = DeviceGroupType.objects.annotate(cluster_count=count_related(DeviceGroup, "cluster_type"))
+    queryset = DeviceGroupType.objects.annotate(device_group_count=count_related(DeviceGroup, "device_group_type"))
     filterset = filtersets.DeviceGroupTypeFilterSet
     filterset_form = forms.DeviceGroupTypeFilterForm
     table = tables.DeviceGroupTypeTable
@@ -72,7 +73,7 @@ class DeviceGroupTypeBulkImportView(generic.BulkImportView):
 class DeviceGroupTypeBulkEditView(generic.BulkEditView):
     """DeviceGroup Type view.for Bulk Editing."""
 
-    queryset = DeviceGroupType.objects.annotate(cluster_count=count_related(DeviceGroup, "cluster_type"))
+    queryset = DeviceGroupType.objects.annotate(device_group_count=count_related(DeviceGroup, "device_group_type"))
     filterset = filtersets.DeviceGroupTypeFilterSet
     table = tables.DeviceGroupTypeTable
     form = forms.DeviceGroupTypeBulkEditForm
@@ -81,7 +82,7 @@ class DeviceGroupTypeBulkEditView(generic.BulkEditView):
 class DeviceGroupTypeBulkDeleteView(generic.BulkDeleteView):
     """DeviceGroup Type view.for bulk deletion."""
 
-    queryset = DeviceGroupType.objects.annotate(cluster_count=count_related(DeviceGroup, "cluster_type"))
+    queryset = DeviceGroupType.objects.annotate(device_group_count=count_related(DeviceGroup, "device_group_type"))
     filterset = filtersets.DeviceGroupTypeFilterSet
     table = tables.DeviceGroupTypeTable
 
@@ -92,9 +93,9 @@ class DeviceGroupTypeBulkDeleteView(generic.BulkDeleteView):
 
 
 class DeviceGroupListView(generic.ObjectListView):
-    """DeviceGroup view.for listing clusters."""
+    """DeviceGroup view.for listing device groups."""
 
-    permission_required = "devicegroup.view_cluster"
+    permission_required = "devicegroup.view_device_group"
     queryset = DeviceGroup.objects.annotate(device_count=count_related(Device, "devicegroup"))
     table = tables.DeviceGroupTable
     filterset = filtersets.DeviceGroupFilterSet
@@ -103,14 +104,14 @@ class DeviceGroupListView(generic.ObjectListView):
 
 @register_model_view(DeviceGroup)
 class DeviceGroupView(generic.ObjectView):
-    """DeviceGroup view.for retrieving a cluster."""
+    """DeviceGroup view.for retrieving a device group."""
 
     queryset = DeviceGroup.objects.all()
 
 
 @register_model_view(DeviceGroup, "devices")
 class DeviceGroupDevicesView(generic.ObjectChildrenView):
-    """DeviceGroup view.for listing clusters."""
+    """DeviceGroup view.for listing device groups."""
 
     queryset = DeviceGroup.objects.all()
     child_model = Device
@@ -135,7 +136,7 @@ class DeviceGroupDevicesView(generic.ObjectChildrenView):
     )
 
     def get_children(self, request, parent):
-        """Retrieves the devices that make up the cluster."""
+        """Retrieves the devices that make up the device group."""
         return Device.objects.restrict(request.user, "view").filter(devicegroup=parent)
 
 
@@ -180,11 +181,11 @@ class DeviceGroupBulkDeleteView(generic.BulkDeleteView):
 
 @register_model_view(DeviceGroup, "add_devices", path="devices/add")
 class DeviceGroupAddDevicesView(generic.ObjectEditView):
-    """DeviceGroup view.for managing the addition of devices to a cluster."""
+    """DeviceGroup view.for managing the addition of devices to a device group."""
 
     queryset = DeviceGroup.objects.all()
     form = forms.DeviceGroupAddDevicesForm
-    template_name = "netbox_device_groups/cluster_add_devices.html"
+    template_name = "netbox_device_groups/devicegroup_add_devices.html"
 
     def get(self, request, pk):
         """Retrieve device list."""
@@ -195,7 +196,7 @@ class DeviceGroupAddDevicesView(generic.ObjectEditView):
             request,
             self.template_name,
             {
-                "cluster": devicegroup,
+                "device_group": devicegroup,
                 "form": form,
                 "return_url": reverse("plugins:netbox_device_groups:devicegroup", kwargs={"pk": pk}),
             },
@@ -214,14 +215,14 @@ class DeviceGroupAddDevicesView(generic.ObjectEditView):
                     devicegroup.devices.add(device)
                     devicegroup.save()
 
-            messages.success(request, "Added {} devices to cluster {}".format(len(device_pks), devicegroup))
+            messages.success(request, "Added {} devices to device group {}".format(len(device_pks), devicegroup))
             return redirect(devicegroup.get_absolute_url())
 
         return render(
             request,
             self.template_name,
             {
-                "cluster": devicegroup,
+                "device_group": devicegroup,
                 "form": form,
                 "return_url": devicegroup.get_absolute_url(),
             },
@@ -230,7 +231,7 @@ class DeviceGroupAddDevicesView(generic.ObjectEditView):
 
 @register_model_view(DeviceGroup, "remove_devices", path="devices/remove")
 class DeviceGroupRemoveDevicesView(generic.ObjectEditView):
-    """DeviceGroup view.for managing the deletion of devices to a cluster."""
+    """DeviceGroup view.for managing the deletion of devices to a device group."""
 
     queryset = DeviceGroup.objects.all()
     form = forms.DeviceGroupRemoveDevicesForm
@@ -250,7 +251,9 @@ class DeviceGroupRemoveDevicesView(generic.ObjectEditView):
                         devicegroup.devices.remove(device)
                         devicegroup.save()
 
-                messages.success(request, "Removed {} devices from cluster {}".format(len(device_pks), devicegroup))
+                messages.success(
+                    request, "Removed {} devices from device group {}".format(len(device_pks), devicegroup)
+                )
                 return redirect(devicegroup.get_absolute_url())
 
         else:

@@ -30,7 +30,7 @@
             "name": "stnpa3",
             "description": "",
             "comments": "",
-            "cluster_type": 3,
+            "device_group_type": 3,
             "status": "planned",
             "tenant": 12,
             "site": 20,

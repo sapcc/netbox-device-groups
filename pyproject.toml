@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "netbox-device-groups"
-version = "0.2.1"
+version = "0.1.0"
 authors = ["Pat McLean <patrick.mclean@sap.com>", "The Fail Druid <faildruid@ahra.ie"]
 readme = "README.md"
 keywords = ["Netbox", "netbox", "plugin"]
@@ -64,6 +64,9 @@ svgwrite = "1.4.3"
 tablib = "3.5.0"
 tzdata = "2024.1"
 invoke = "^2.2.0"
+pydocstyle = "^6.3.0"
+black = "^24.4.2"
+flake8 = "^7.0.0"
 
 
 [build-system]

@@ -91,6 +91,19 @@ It is typically recommended to launch the __runserver__ command in a separate sh
 
 Documentation dependencies are pinned to exact versions to ensure consistent results. For the development environment, they are defined in the `pyproject.toml` file.
 
+### Visual Studio Code Intellisense
+
+We recommend having the source code for netbox in a local folder checked out with tag matching the release for which you are developing, as this helps VSCode with references for intellisense.
+
+```shell
+git clone https://github.com/netbox-community/netbox.git
+cd netbox
+git checkout tags/v3.5.9 -b v3.5.9-branch
+```
+
+Then add this folder, with the `netbox` subfolder, to your User Settings -> Python -> Analysis -> ExtraPaths i.e. if you have checked out the [netbox](https://github.com/netbox-community/netbox.git) code to `~/development/opensource/netbox` add the folder `~/development/opensource/netbox/netbox` to your `python.analysis.extraPaths` setting.
+
+
 ### CLI Helper Commands
 
 The project features a CLI helper based on [Invoke](https://www.pyinvoke.org/) to help setup the development environment. The commands are listed below in 3 categories:
@@ -286,6 +299,14 @@ The back-end Django process is setup to automatically reload itself (it only tak
 
 When trying to debug an issue, one helpful thing you can look at are the logs within the Docker containers.
 
+| container name | What it is |
+| --- | --- |
+| `device-grp-docs` | The Netbox Container |
+| `device-grp-ui` | The documentation Container |
+| `device-grp-db` | The PostgreSQL Container |
+| `device-grp-redis` | The Redis Container |
+
+
 ```bash
 ➜ docker logs <name of container> -f
 ```
@@ -293,9 +314,6 @@ When trying to debug an issue, one helpful thing you can look at are the logs wi
 !!! note
     The `-f` tag will keep the logs open, and output them in realtime as they are generated.
 
-So for example, our plugin is named `customer_clusters`, the command would most likely be `docker logs customer-clusters-ui -f`. You can find the name of all running containers via `docker ps`.
-
-If you want to view the logs specific to the database container, simply use the name of that container instead.
 
 ## To Rebuild or Not to Rebuild
 

@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   device-grp-db:
     image: "postgres:15.4-alpine"

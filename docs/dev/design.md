@@ -2,7 +2,7 @@
 
 ## Purpose
 
-A device group represents a logical grouping of physical resources within which shared services will run. Physical devices may be associated with clusters as server hosts, network devices, and storage arrays. This plugin will allow users to track in which cluster(s) a particular device may reside.
+A device group represents a logical grouping of physical resources within which shared services will run. Physical devices may be associated with device groups as server hosts, network devices, and storage arrays. This plugin will allow users to track in which device group(s) a particular device may reside.
 
 ### Intended Audience and Reading suggestions
 
@@ -38,9 +38,8 @@ A device group represents a logical grouping of physical resources within which 
 title: Device Groups ERD
 ---
 erDiagram
-    CLUSTER ||--|{ CLUSTER_TYPE : contains
-    CLUSTER ||--|{ CLUSTER_NODES : contains
-    CLUSTER_NODES ||--|{ DCIM_DEVICE : contains
+    DEVICE_GROUP_TYPE ||--|{ DEVICE_GROUP : contains
+    DEVICE_GROUP ||--|{ DCIM_DEVICE : contains
 ```
 
 ### Design and Implementation Constraints

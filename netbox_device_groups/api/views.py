@@ -49,8 +49,8 @@ class DeviceGroupTypeViewSet(NetBoxModelViewSet):
 class DeviceGroupViewSet(NetBoxModelViewSet):
     """A Viewset for the DeviceGroup."""
 
-    queryset = DeviceGroup.objects.prefetch_related("cluster_type", "tenant", "site", "tags", "devices").annotate(
-        device_count=count_related(Device, "cluster"),
+    queryset = DeviceGroup.objects.prefetch_related("device_group_type", "tenant", "site", "tags", "devices").annotate(
+        device_count=count_related(Device, "devicegroup"),
     )
     serializer_class = serializers.DeviceGroupSerializer
     filterset_class = filtersets.DeviceGroupFilterSet

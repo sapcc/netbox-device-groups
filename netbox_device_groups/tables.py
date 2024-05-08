@@ -17,10 +17,10 @@ class DeviceGroupTypeTable(NetBoxTable):
     """Device Group Type django table definition."""
 
     name = tables.Column(linkify=True)
-    cluster_count = columns.LinkedCountColumn(
+    device_group_count = columns.LinkedCountColumn(
         viewname="plugins:netbox_device_groups:devicegroup_list",
         url_params={"type_id": "pk"},
-        verbose_name=_("Clusters"),
+        verbose_name=_("Device Groups"),
     )
     tags = columns.TagColumn(url_name="plugins:netbox_device_groups:devicegrouptype_list")
 
@@ -30,7 +30,7 @@ class DeviceGroupTypeTable(NetBoxTable):
             "pk",
             "id",
             "name",
-            "cluster_count",
+            "device_group_count",
             "description",
             "created",
             "last_updated",
@@ -41,7 +41,7 @@ class DeviceGroupTypeTable(NetBoxTable):
             "pk",
             "name",
             "description",
-            "cluster_count",
+            "device_group_count",
         )
 
 
@@ -49,7 +49,7 @@ class DeviceGroupTable(TenancyColumnsMixin, NetBoxTable):
     """Device Group django table definition."""
 
     name = tables.Column(verbose_name=_("Name"), linkify=True)
-    cluster_type = tables.Column(verbose_name=_("Type"), linkify=True)
+    device_group_type = tables.Column(verbose_name=_("Type"), linkify=True)
     status = columns.ChoiceFieldColumn(
         verbose_name=_("Status"),
     )
@@ -66,7 +66,7 @@ class DeviceGroupTable(TenancyColumnsMixin, NetBoxTable):
             "pk",
             "id",
             "name",
-            "cluster_type",
+            "device_group_type",
             "status",
             "tenant",
             "site",
@@ -79,7 +79,7 @@ class DeviceGroupTable(TenancyColumnsMixin, NetBoxTable):
         default_columns = (
             "pk",
             "name",
-            "cluster_type",
+            "device_group_type",
             "status",
             "tenant",
             "site",

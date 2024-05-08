@@ -18,12 +18,12 @@ class DeviceGroupTypeTestCase(
 
     @classmethod
     def setUpTestData(cls):
-        cluster_types = (
+        device_group_types = (
             DeviceGroupType(name="Device Group Type 1", description="A new test device group type-1"),
             DeviceGroupType(name="Device Group Type 2", description="A new test device group type-2"),
             DeviceGroupType(name="Device Group Type 3", description="A new test device group type-3"),
         )
-        DeviceGroupType.objects.bulk_create(cluster_types)
+        DeviceGroupType.objects.bulk_create(device_group_types)
 
         tags = create_tags("Alpha", "Bravo", "Charlie")
 
@@ -42,9 +42,9 @@ class DeviceGroupTypeTestCase(
 
         cls.csv_update_data = (
             "id,name,description",
-            f"{cluster_types[0].pk},Device Group Type 7,Fourth device group type7",
-            f"{cluster_types[1].pk},Device Group Type 8,Fifth device group type8",
-            f"{cluster_types[2].pk},Device Group Type 9,Sixth device group type9",
+            f"{device_group_types[0].pk},Device Group Type 7,Fourth device group type7",
+            f"{device_group_types[1].pk},Device Group Type 8,Fifth device group type8",
+            f"{device_group_types[2].pk},Device Group Type 9,Sixth device group type9",
         )
 
         cls.bulk_edit_data = {

@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   device-grp-redis:
     container_name: "device-grp-redis"

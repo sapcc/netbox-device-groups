@@ -13,9 +13,9 @@ __all__ = ("DeviceGroup",)
 
 
 class DeviceGroup(PluginBaseModel):
-    """A cluster of physical devices. Each Cluster may optionally be associated with one or more Devices."""
+    """A group of devices. Each Group may optionally be associated with one or more Devices."""
 
-    cluster_type = models.ForeignKey(to=DeviceGroupType, on_delete=models.PROTECT, related_name="device_groups")
+    device_group_type = models.ForeignKey(to=DeviceGroupType, on_delete=models.PROTECT, related_name="device_groups")
     status = models.CharField(
         max_length=50, choices=DeviceGroupStatusChoices, default=DeviceGroupStatusChoices.STATUS_PLANNED
     )
@@ -35,7 +35,7 @@ class DeviceGroup(PluginBaseModel):
         verbose_name=_("primary IPv4"),
     )
     clone_fields = (
-        "cluster_type",
+        "device_group_type",
         "status",
         "tenant",
         "site",
@@ -53,5 +53,5 @@ class DeviceGroup(PluginBaseModel):
         return self.name
 
     def get_absolute_url(self):
-        """Returns the objects absolute url. i.e. clusters/cluster-type/2."""
+        """Returns the objects absolute url. i.e. device-groups/device-group-types/3/."""
         return reverse("plugins:netbox_device_groups:devicegroup", args=[self.pk])

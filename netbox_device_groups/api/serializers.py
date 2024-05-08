@@ -19,7 +19,7 @@ class DeviceGroupTypeSerializer(NetBoxModelSerializer):
     """Serializer for the Device Group Type."""
 
     url = serializers.HyperlinkedIdentityField(view_name="plugins-api:netbox_device_groups-api:devicegrouptype-detail")
-    cluster_count = serializers.IntegerField(read_only=True)
+    device_group_count = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = DeviceGroupType
@@ -32,7 +32,7 @@ class DeviceGroupTypeSerializer(NetBoxModelSerializer):
             "custom_fields",
             "created",
             "last_updated",
-            "cluster_count",
+            "device_group_count",
         ]
 
 
@@ -40,7 +40,7 @@ class DeviceGroupSerializer(NetBoxModelSerializer):
     """Serializer for the Device Group."""
 
     url = serializers.HyperlinkedIdentityField(view_name="plugins-api:netbox_device_groups-api:devicegroup-detail")
-    cluster_type = NestedDeviceGroupTypeSerializer()
+    device_group_type = NestedDeviceGroupTypeSerializer()
     status = ChoiceField(choices=DeviceGroupStatusChoices, required=False)
     tenant = NestedTenantSerializer(required=False, allow_null=True)
     site = NestedSiteSerializer(required=False, allow_null=True, default=None)
@@ -53,7 +53,7 @@ class DeviceGroupSerializer(NetBoxModelSerializer):
             "id",
             "url",
             "name",
-            "cluster_type",
+            "device_group_type",
             "status",
             "tenant",
             "site",

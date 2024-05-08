@@ -5,7 +5,7 @@
 
 {% block breadcrumbs %}
   {{ block.super }}
-  <li class="breadcrumb-item"><a href="{% url 'plugins:netbox_device_groups:devicegroup_list' %}?cluster_type_id={{ object.type.pk }}">{{ object.type }}</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'plugins:netbox_device_groups:devicegroup_list' %}?device_group_type_id={{ object.type.pk }}">{{ object.type }}</a></li>
 {% endblock %}
 
 {% block extra_controls %}
