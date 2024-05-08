@@ -19,7 +19,7 @@ DATETIME_FORMAT = "N j, Y g:i a"
 SHORT_DATETIME_FORMAT = "Y-m-d H:i"
 
 # exclude all objects from view permissions
-EXEMPT_VIEW_PERMISSIONS = ["*"]
+# EXEMPT_VIEW_PERMISSIONS = ["*"]    # as per   https://github.wdf.sap.corp/cc/netbox-deployment/issues/191
 
 
 ALLOWED_HOSTS = os.getenv("NETBOX_ALLOWED_HOSTS", "*").split(" ")

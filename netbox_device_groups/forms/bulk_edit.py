@@ -28,7 +28,7 @@ class DeviceGroupTypeBulkEditForm(NetBoxModelBulkEditForm):
 
 
 class DeviceGroupBulkEditForm(NetBoxModelBulkEditForm):
-    """Bulk edit for Cluster."""
+    """Bulk edit for Device Group."""
 
     device_group_type = DynamicModelChoiceField(queryset=DeviceGroupType.objects.all(), required=False)
     status = forms.ChoiceField(choices=add_blank_choice(DeviceGroupStatusChoices), required=False, initial="")

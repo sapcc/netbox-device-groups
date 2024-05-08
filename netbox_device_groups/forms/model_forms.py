@@ -98,31 +98,31 @@ class DeviceGroupAddDevicesForm(BootstrapMixin, forms.Form):
             "devices",
         ]
 
-    def __init__(self, cluster, *args, **kwargs):
+    def __init__(self, device_group, *args, **kwargs):
         """On creation initialise an empty set for devices."""
-        self.cluster = cluster
+        self.device_group = device_group
 
         super().__init__(*args, **kwargs)
 
         self.fields["devices"].choices = []
 
     def clean(self):
-        """If the Cluster is assigned to a Site, all Devices must be assigned to that Site.."""
+        """If the device_group is assigned to a Site, all Devices must be assigned to that Site.."""
         super().clean()
 
-        if self.cluster.site is not None:
+        if self.device_group.site is not None:
             for device in self.cleaned_data.get("devices", []):
-                if device.site != self.cluster.site:
+                if device.site != self.device_group.site:
                     raise ValidationError(
                         {
-                            "devices": "{} belongs to a different site ({}) than the cluster ({})".format(
-                                device, device.site, self.cluster.site
+                            "devices": "{} belongs to a different site ({}) than the device_group ({})".format(
+                                device, device.site, self.device_group.site
                             )
                         }
                     )
 
 
 class DeviceGroupRemoveDevicesForm(ConfirmationForm):
-    """A confirmation dialog asking for confirmation to remove the listed devices from the cluster."""
+    """A confirmation dialog asking for confirmation to remove the listed devices from the device_group."""
 
     pk = forms.ModelMultipleChoiceField(queryset=Device.objects.all(), widget=forms.MultipleHiddenInput())

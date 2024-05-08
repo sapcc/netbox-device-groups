@@ -299,6 +299,14 @@ The back-end Django process is setup to automatically reload itself (it only tak
 
 When trying to debug an issue, one helpful thing you can look at are the logs within the Docker containers.
 
+| container name | What it is |
+| --- | --- |
+| `device-grp-docs` | The Netbox Container |
+| `device-grp-ui` | The documentation Container |
+| `device-grp-db` | The PostgreSQL Container |
+| `device-grp-redis` | The Redis Container |
+
+
 ```bash
 ➜ docker logs <name of container> -f
 ```
@@ -306,9 +314,6 @@ When trying to debug an issue, one helpful thing you can look at are the logs wi
 !!! note
     The `-f` tag will keep the logs open, and output them in realtime as they are generated.
 
-So for example, our plugin is named `customer_clusters`, the command would most likely be `docker logs customer-clusters-ui -f`. You can find the name of all running containers via `docker ps`.
-
-If you want to view the logs specific to the database container, simply use the name of that container instead.
 
 ## To Rebuild or Not to Rebuild
 

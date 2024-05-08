@@ -26,7 +26,7 @@ class DeviceGroupTypeFilterSet(NetBoxModelFilterSet):
 
 
 class DeviceGroupFilterSet(NetBoxModelFilterSet, TenancyFilterSet):
-    """FilterSet for the cluster."""
+    """FilterSet for the device group."""
 
     site_id = django_filters.ModelMultipleChoiceFilter(
         queryset=Site.objects.all(),
@@ -41,13 +41,13 @@ class DeviceGroupFilterSet(NetBoxModelFilterSet, TenancyFilterSet):
     status = django_filters.MultipleChoiceFilter(choices=DeviceGroupStatusChoices, null_value=None)
     device_group_type_id = django_filters.ModelMultipleChoiceFilter(
         queryset=DeviceGroupType.objects.all(),
-        label=_("Cluster type (ID)"),
+        label=_("Device Type (ID)"),
     )
     device_group_type = django_filters.ModelMultipleChoiceFilter(
         field_name="device_group_type__name",
         queryset=DeviceGroupType.objects.all(),
         to_field_name="name",
-        label=_("Cluster type"),
+        label=_("Device Type"),
     )
     device_id = django_filters.ModelMultipleChoiceFilter(
         field_name="devices",
@@ -66,13 +66,13 @@ class DeviceGroupFilterSet(NetBoxModelFilterSet, TenancyFilterSet):
         fields = ["id", "name"]
 
     def search(self, queryset, name, value):
-        """Search Definition for the Cluster."""
+        """Search Definition for the Device Group."""
         if not value.strip():
             return queryset
         return queryset.filter(Q(name__icontains=value) | Q(description__icontains=value))
 
     def _has_primary_ip(self, queryset, name, value):
-        """Does the Cluster have a primary IP Address."""
+        """Does the Device Group have a primary IP Address."""
         params = Q(primary_ip4__isnull=False)
         if value:
             return queryset.filter(params)

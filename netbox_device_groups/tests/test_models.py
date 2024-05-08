@@ -32,11 +32,11 @@ class TestDeviceGroupObjects(TestCase):
     @classmethod
     def setUpTestData(cls):
         device_group_type = models.DeviceGroupType.objects.create(
-            name="DeviceDevice Group Type 1", description="cluster-type-1"
+            name="DeviceDevice Group Type 1", description="device-group-type-1"
         )
-        models.DeviceGroup.objects.create(name="DeviceCluster 1", device_group_type=device_group_type)
+        models.DeviceGroup.objects.create(name="Device Group 1", device_group_type=device_group_type)
 
-    def test_create_cluster(self):
+    def test_create_device_group(self):
         manufacturer = Manufacturer.objects.create(name="Manufacturer 1", slug="manufacturer-1")
         device_type = DeviceType.objects.create(manufacturer=manufacturer, model="Device Type 1", slug="device-type-1")
         device_role = DeviceRole.objects.create(name="Device Role 1", slug="device-role-1", color="ff0000")
@@ -52,12 +52,12 @@ class TestDeviceGroupObjects(TestCase):
         device2 = Device.objects.create(
             site=site_a, location=location_a2, name="Device 2", device_type=device_type, device_role=device_role
         )
-        test_cluster = models.DeviceGroup.objects.first()
-        test_cluster.devices.add(device1)
-        test_cluster.devices.add(device2)
-        test_cluster.site = site_a
+        test_group = models.DeviceGroup.objects.first()
+        test_group.devices.add(device1)
+        test_group.devices.add(device2)
+        test_group.site = site_a
 
-        self.assertEqual(test_cluster.devices.count(), 2)
-        self.assertEqual(test_cluster.devices.first().site, site_a)
-        self.assertEqual(test_cluster.devices.first().location, location_a1)
-        self.assertEqual(test_cluster.devices.first().device_role, device_role)
+        self.assertEqual(test_group.devices.count(), 2)
+        self.assertEqual(test_group.devices.first().site, site_a)
+        self.assertEqual(test_group.devices.first().location, location_a1)
+        self.assertEqual(test_group.devices.first().device_role, device_role)

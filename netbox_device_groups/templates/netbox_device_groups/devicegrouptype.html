@@ -32,7 +32,7 @@
           <tr>
             <th scope="row">{% trans "Device Groups" %}</th>
             <td>
-              <a href="{% url 'plugins:netbox_device_groups:devicegroup_list' %}?device_group_type_id={{ object.pk }}">{{ object.clusters.count }}</a>
+              <a href="{% url 'plugins:netbox_device_groups:devicegroup_list' %}?device_group_type_id={{ object.pk }}">{{ object.device_groups.count }}</a>
             </td>
           </tr>
         </table>

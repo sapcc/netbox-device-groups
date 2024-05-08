@@ -27,7 +27,7 @@ __all__ = [
     exclude_fields=("device_group_count",),
 )
 class NestedDeviceGroupTypeSerializer(WritableNestedSerializer):
-    """The Serializer to return a Type for a Cluster."""
+    """The Serializer to return a Type for a device group."""
 
     url = serializers.HyperlinkedIdentityField(view_name="plugins-api:netbox_device_groups-api:devicegrouptype-detail")
     device_group_count = serializers.IntegerField(read_only=True)
@@ -39,7 +39,7 @@ class NestedDeviceGroupTypeSerializer(WritableNestedSerializer):
 
 @extend_schema_serializer()
 class NestedDeviceGroupSerializer(WritableNestedSerializer):
-    """The Serializer to return a Cluster for a Type."""
+    """The Serializer to return a device group for a Type."""
 
     url = serializers.HyperlinkedIdentityField(view_name="plugins-api:netbox_device_groups-api:devicegroup-detail")
 
