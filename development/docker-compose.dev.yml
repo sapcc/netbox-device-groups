@@ -5,6 +5,11 @@ services:
       - "8080:8080"
     volumes:
       - "../:/app/"
+    healthcheck:
+      start_period: 180s
+      timeout: 3s
+      interval: 15s
+      test: "curl -f http://device-grp-ui:8080/api/ || exit 1"
 
   device-grp-docs:
     entrypoint: "mkdocs serve -v -a 0.0.0.0:8001"
@@ -21,7 +26,7 @@ services:
 
     depends_on:
       device-grp-ui:
-        condition: "service_started"
+        condition: "service_healthy"
 
 volumes:
   app_data: {}
