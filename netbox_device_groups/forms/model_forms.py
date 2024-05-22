@@ -107,20 +107,22 @@ class DeviceGroupAddDevicesForm(BootstrapMixin, forms.Form):
 
         self.fields["devices"].choices = []
 
-    def clean(self):
-        """If the device_group is assigned to a Site, all Devices must be assigned to that Site.."""
-        super().clean()
+    # def clean(self):
+    #     """If the device_group is assigned to a Site, all Devices must be assigned to that Site.."""
+    #     super().clean()
 
-        if self.device_group.site is not None:
-            for device in self.cleaned_data.get("devices", []):
-                if device.site != self.device_group.site:
-                    raise ValidationError(
-                        {
-                            "devices": "{} belongs to a different site ({}) than the device_group ({})".format(
-                                device, device.site, self.device_group.site
-                            )
-                        }
-                    )
+    #     if self.device_group.site is not None:
+    #         for device in self.cleaned_data.get("devices", []):
+    #             if device.site != self.device_group.site:
+    #                 raise ValidationError(
+    #                     {
+    #                         "devices": "{} belongs to a different site ({}) than the device_group ({})".format(
+    #                             device, device.site, self.device_group.site
+    #                         )
+    #                     }
+    #                 )
+
+        # Removing site limitation as per request from end users
 
 
 class DeviceGroupRemoveDevicesForm(ConfirmationForm):
