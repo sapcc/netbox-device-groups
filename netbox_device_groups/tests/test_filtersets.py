@@ -1,7 +1,6 @@
 from django.test import TestCase
 
 from dcim.models import Region, Site, SiteGroup
-from ipam.models import IPAddress
 from tenancy.models import Tenant, TenantGroup
 from utilities.testing import ChangeLoggedFilterSetTests
 

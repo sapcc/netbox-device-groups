@@ -1,7 +1,6 @@
 """Define the form for this Plugin."""
 
 from django import forms
-from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
 
@@ -122,7 +121,7 @@ class DeviceGroupAddDevicesForm(BootstrapMixin, forms.Form):
     #                     }
     #                 )
 
-        # Removing site limitation as per request from end users
+    # Removing site limitation as per request from end users
 
 
 class DeviceGroupRemoveDevicesForm(ConfirmationForm):

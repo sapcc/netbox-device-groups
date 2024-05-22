@@ -28,10 +28,7 @@ class DeviceGroup(PluginBaseModel):
     )
     devices = models.ManyToManyField(Device)
     primary_ip4 = IPAddressField(
-        verbose_name=_('address'),
-        blank=True,
-        null=True,
-        help_text=_('IPv4 address (with mask)')
+        verbose_name=_("address"), blank=True, null=True, help_text=_("IPv4 address (with mask)")
     )
     clone_fields = (
         "device_group_type",
