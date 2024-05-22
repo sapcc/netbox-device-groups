@@ -61,7 +61,7 @@ class DeviceGroupForm(TenancyForm, NetBoxModelForm):
         initial=DeviceGroupStatusChoices.STATUS_PLANNED,
     )
     fieldsets = (
-        (_("Device Group"), ("name", "device_group_type", "site", "status", "description", "tags")),
+        (_("Device Group"), ("name", "device_group_type", "site", "status", "primary_ip4", "description", "tags")),
         (_("Tenancy"), ("tenant_group", "tenant")),
     )
 
@@ -70,6 +70,7 @@ class DeviceGroupForm(TenancyForm, NetBoxModelForm):
         fields = (
             "name",
             "device_group_type",
+            "primary_ip4",
             "status",
             "tenant",
             "site",

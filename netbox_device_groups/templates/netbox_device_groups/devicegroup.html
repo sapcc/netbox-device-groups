@@ -24,9 +24,12 @@
                   <td>{% badge object.get_status_display bg_color=object.get_status_color %}</td>
                 </tr>
                 <tr>
-                  <th scope="row">Description</th>
-                  <td>{{ object.description|placeholder }}</td>
+                  <th scope="row">Virtual IP Address</th>
+                  <td>{{ object.primary_ip4|placeholder }}</td>
                 </tr>
+                <th scope="row">Description</th>
+                <td>{{ object.description|placeholder }}</td>
+              </tr>
                 <tr>
                     <th scope="row">Tenant</th>
                     <td>
