@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.utils.translation import gettext as _
 
 from dcim.models import Device
+from ipam.fields import IPAddressField
 from netbox_device_groups.choices import DeviceGroupStatusChoices
 from netbox_device_groups.core.models import PluginBaseModel
 from netbox_device_groups.models import DeviceGroupType
@@ -26,13 +27,8 @@ class DeviceGroup(PluginBaseModel):
         to="dcim.Site", on_delete=models.PROTECT, related_name="device_groups", blank=True, null=True
     )
     devices = models.ManyToManyField(Device)
-    primary_ip4 = models.OneToOneField(
-        to="ipam.IPAddress",
-        on_delete=models.SET_NULL,
-        related_name="+",
-        blank=True,
-        null=True,
-        verbose_name=_("primary IPv4"),
+    primary_ip4 = IPAddressField(
+        verbose_name=_("address"), blank=True, null=True, help_text=_("IPv4 address (with mask)")
     )
     clone_fields = (
         "device_group_type",

@@ -1,7 +1,6 @@
 """Define the form for this Plugin."""
 
 from django import forms
-from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
 
@@ -61,7 +60,7 @@ class DeviceGroupForm(TenancyForm, NetBoxModelForm):
         initial=DeviceGroupStatusChoices.STATUS_PLANNED,
     )
     fieldsets = (
-        (_("Device Group"), ("name", "device_group_type", "site", "status", "description", "tags")),
+        (_("Device Group"), ("name", "device_group_type", "site", "status", "primary_ip4", "description", "tags")),
         (_("Tenancy"), ("tenant_group", "tenant")),
     )
 
@@ -70,6 +69,7 @@ class DeviceGroupForm(TenancyForm, NetBoxModelForm):
         fields = (
             "name",
             "device_group_type",
+            "primary_ip4",
             "status",
             "tenant",
             "site",
@@ -106,20 +106,22 @@ class DeviceGroupAddDevicesForm(BootstrapMixin, forms.Form):
 
         self.fields["devices"].choices = []
 
-    def clean(self):
-        """If the device_group is assigned to a Site, all Devices must be assigned to that Site.."""
-        super().clean()
+    # def clean(self):
+    #     """If the device_group is assigned to a Site, all Devices must be assigned to that Site.."""
+    #     super().clean()
 
-        if self.device_group.site is not None:
-            for device in self.cleaned_data.get("devices", []):
-                if device.site != self.device_group.site:
-                    raise ValidationError(
-                        {
-                            "devices": "{} belongs to a different site ({}) than the device_group ({})".format(
-                                device, device.site, self.device_group.site
-                            )
-                        }
-                    )
+    #     if self.device_group.site is not None:
+    #         for device in self.cleaned_data.get("devices", []):
+    #             if device.site != self.device_group.site:
+    #                 raise ValidationError(
+    #                     {
+    #                         "devices": "{} belongs to a different site ({}) than the device_group ({})".format(
+    #                             device, device.site, self.device_group.site
+    #                         )
+    #                     }
+    #                 )
+
+    # Removing site limitation as per request from end users
 
 
 class DeviceGroupRemoveDevicesForm(ConfirmationForm):

@@ -1,7 +1,6 @@
 from django.test import TestCase
 
 from dcim.models import Region, Site, SiteGroup
-from ipam.models import IPAddress
 from tenancy.models import Tenant, TenantGroup
 from utilities.testing import ChangeLoggedFilterSetTests
 
@@ -83,14 +82,6 @@ class DeviceGroupTestCase(TestCase, ChangeLoggedFilterSetTests):
         )
         Tenant.objects.bulk_create(tenants)
 
-        # Assign primary IPs for filtering
-        ip_addresses = (
-            IPAddress(address="192.0.2.1/24"),
-            IPAddress(address="192.0.2.2/24"),
-            IPAddress(address="192.0.2.3/24"),
-        )
-        IPAddress.objects.bulk_create(ip_addresses)
-
         groups = (
             DeviceGroup(
                 name="Device Group 1",
@@ -98,7 +89,7 @@ class DeviceGroupTestCase(TestCase, ChangeLoggedFilterSetTests):
                 status=DeviceGroupStatusChoices.STATUS_PLANNED,
                 site=sites[0],
                 tenant=tenants[0],
-                primary_ip4=ip_addresses[0],
+                primary_ip4="192.0.2.1/24",
             ),
             DeviceGroup(
                 name="Device Group 2",
@@ -106,7 +97,7 @@ class DeviceGroupTestCase(TestCase, ChangeLoggedFilterSetTests):
                 status=DeviceGroupStatusChoices.STATUS_STAGING,
                 site=sites[1],
                 tenant=tenants[1],
-                primary_ip4=ip_addresses[1],
+                primary_ip4="192.0.2.2/24",
             ),
             DeviceGroup(
                 name="Device Group 3",
@@ -114,7 +105,7 @@ class DeviceGroupTestCase(TestCase, ChangeLoggedFilterSetTests):
                 status=DeviceGroupStatusChoices.STATUS_ACTIVE,
                 site=sites[2],
                 tenant=tenants[2],
-                primary_ip4=ip_addresses[2],
+                primary_ip4="192.0.2.3/24",
             ),
         )
         DeviceGroup.objects.bulk_create(groups)
