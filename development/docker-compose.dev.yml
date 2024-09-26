@@ -1,28 +1,32 @@
 ---
-version: "3.8"
 services:
-  phy-cluster-ui:
+  device-grp-ui:
     ports:
       - "8080:8080"
     volumes:
       - "../:/app/"
+    healthcheck:
+      start_period: 180s
+      timeout: 3s
+      interval: 15s
+      test: "curl -f http://device-grp-ui:8080/api/ || exit 1"
 
-  phy-cluster-docs:
+  device-grp-docs:
     entrypoint: "mkdocs serve -v -a 0.0.0.0:8001"
     ports:
       - "8001:8001"
     volumes:
       - "../:/app/"
-    image: "phy-cluster-ui"
-    container_name: "phy-cluster-docs"
-    hostname: "phy-cluster-docs"
+    image: "device-grp-ui"
+    container_name: "device-grp-docs"
+    hostname: "device-grp-docs"
     healthcheck:
       disable: true
     tty: true
 
     depends_on:
-      phy-cluster-ui:
-        condition: "service_started"
+      device-grp-ui:
+        condition: "service_healthy"
 
 volumes:
   app_data: {}

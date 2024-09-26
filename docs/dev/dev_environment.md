@@ -91,6 +91,19 @@ It is typically recommended to launch the __runserver__ command in a separate sh
 
 Documentation dependencies are pinned to exact versions to ensure consistent results. For the development environment, they are defined in the `pyproject.toml` file.
 
+### Visual Studio Code Intellisense
+
+We recommend having the source code for netbox in a local folder checked out with tag matching the release for which you are developing, as this helps VSCode with references for intellisense.
+
+```shell
+git clone https://github.com/netbox-community/netbox.git
+cd netbox
+git checkout tags/v3.5.9 -b v3.5.9-branch
+```
+
+Then add this folder, with the `netbox` subfolder, to your User Settings -> Python -> Analysis -> ExtraPaths i.e. if you have checked out the [netbox](https://github.com/netbox-community/netbox.git) code to `~/development/opensource/netbox` add the folder `~/development/opensource/netbox/netbox` to your `python.analysis.extraPaths` setting.
+
+
 ### CLI Helper Commands
 
 The project features a CLI helper based on [Invoke](https://www.pyinvoke.org/) to help setup the development environment. The commands are listed below in 3 categories:
@@ -168,8 +181,8 @@ The first thing you need to do is build the necessary Docker image for the app t
 #19 exporting layers
 #19 exporting layers 2.5s done
 #19 writing image sha256:5e1e326448501f8769f575ff0b61240c6fd09ca8b5a1291b969833b459f5c881 done
-#19 naming to docker.io/library/phy-cluster-ui
-#19 naming to docker.io/library/phy-cluster-ui done
+#19 naming to docker.io/library/device-grp-ui
+#19 naming to docker.io/library/device-grp-ui done
 #19 DONE 2.5s
 ```
 
@@ -181,24 +194,24 @@ Next, you need to start up your Docker containers.
 ➜ invoke start
 Starting Netbox in detached mode...
 Running docker-compose command "up --detach"
- Container phy-cluster-redis  Recreate
- Container phy-cluster-db  Recreate
- Container phy-cluster-docs  Recreate
- Container phy-cluster-redis  Recreated
- Container phy-cluster-db  Recreated
- Container phy-cluster-ui  Recreate
- Container phy-cluster-docs  Recreated
- Container phy-cluster-ui  Recreated
- Container phy-cluster-redis  Starting
- Container phy-cluster-db  Starting
- Container phy-cluster-docs  Starting
- Container phy-cluster-redis  Started
- Container phy-cluster-db  Started
- Container phy-cluster-db  Waiting
- Container phy-cluster-docs  Started
- Container phy-cluster-db  Healthy
- Container phy-cluster-ui  Starting
- Container phy-cluster-ui  Started
+ Container device-grp-redis  Recreate
+ Container device-grp-db  Recreate
+ Container device-grp-docs  Recreate
+ Container device-grp-redis  Recreated
+ Container device-grp-db  Recreated
+ Container device-grp-ui  Recreate
+ Container device-grp-docs  Recreated
+ Container device-grp-ui  Recreated
+ Container device-grp-redis  Starting
+ Container device-grp-db  Starting
+ Container device-grp-docs  Starting
+ Container device-grp-redis  Started
+ Container device-grp-db  Started
+ Container device-grp-db  Waiting
+ Container device-grp-docs  Started
+ Container device-grp-db  Healthy
+ Container device-grp-ui  Starting
+ Container device-grp-ui  Started
 ```
 
 This will start all of the Docker containers used for hosting the app. You should see the following containers running after `invoke start` is finished.
@@ -206,10 +219,10 @@ This will start all of the Docker containers used for hosting the app. You shoul
 ```bash
 ➜ docker ps
 CONTAINER ID   IMAGE                COMMAND                  CREATED          STATUS                    PORTS                    NAMES
-b39a80476277   phy-cluster-ui      "/opt/entrypoint.sh"     18 seconds ago   Up 6 seconds              0.0.0.0:8080->8080/tcp   phy-cluster-ui
-100632ca4f42   phy-cluster-ui      "mkdocs serve -v -a …"   18 seconds ago   Up 17 seconds             0.0.0.0:8001->8001/tcp   phy-cluster-docs
-21492abea2f6   postgres:14-alpine   "docker-entrypoint.s…"   18 seconds ago   Up 17 seconds (healthy)   0.0.0.0:5432->5432/tcp   phy-cluster-db
-a620e0c82e6d   redis:7-alpine       "docker-entrypoint.s…"   18 seconds ago   Up 17 seconds             0.0.0.0:6379->6379/tcp   phy-cluster-redis
+b39a80476277   device-grp-ui      "/opt/entrypoint.sh"     18 seconds ago   Up 6 seconds              0.0.0.0:8080->8080/tcp   device-grp-ui
+100632ca4f42   device-grp-ui      "mkdocs serve -v -a …"   18 seconds ago   Up 17 seconds             0.0.0.0:8001->8001/tcp   device-grp-docs
+21492abea2f6   postgres:14-alpine   "docker-entrypoint.s…"   18 seconds ago   Up 17 seconds (healthy)   0.0.0.0:5432->5432/tcp   device-grp-db
+a620e0c82e6d   redis:7-alpine       "docker-entrypoint.s…"   18 seconds ago   Up 17 seconds             0.0.0.0:6379->6379/tcp   device-grp-redis
 ```
 
 Once the containers are fully up, you should be able to open up a web browser, and view:
@@ -227,7 +240,7 @@ If you need to create a superuser, run the follow commands.
 ```bash
 ➜ invoke createsuperuser
 Running docker-compose command "ps --services --filter status=running"
-Running docker-compose command "exec phy-cluster-ui python /opt/netbox/netbox/manage.py createsuperuser --username admin"
+Running docker-compose command "exec device-grp-ui python /opt/netbox/netbox/manage.py createsuperuser --username admin"
 Email address: email@example.com
 Password (again):
 Superuser created successfully.
@@ -241,24 +254,24 @@ The last command to know for now is `invoke stop`.
 ➜ invoke stop
 Stopping Netbox...
 Running docker-compose command "down"
- Container phy-cluster-ui  Stopping
- Container phy-cluster-docs  Stopping
- Container phy-cluster-ui  Stopped
- Container phy-cluster-ui  Removing
- Container phy-cluster-ui  Removed
- Container phy-cluster-db  Stopping
- Container phy-cluster-redis  Stopping
- Container phy-cluster-db  Stopped
- Container phy-cluster-db  Removing
- Container phy-cluster-db  Removed
- Container phy-cluster-redis  Stopped
- Container phy-cluster-redis  Removing
- Container phy-cluster-redis  Removed
- Container phy-cluster-docs  Stopped
- Container phy-cluster-docs  Removing
- Container phy-cluster-docs  Removed
- Network physical_clusters_default  Removing
- Network physical_clusters_default  Removed
+ Container device-grp-ui  Stopping
+ Container device-grp-docs  Stopping
+ Container device-grp-ui  Stopped
+ Container device-grp-ui  Removing
+ Container device-grp-ui  Removed
+ Container device-grp-db  Stopping
+ Container device-grp-redis  Stopping
+ Container device-grp-db  Stopped
+ Container device-grp-db  Removing
+ Container device-grp-db  Removed
+ Container device-grp-redis  Stopped
+ Container device-grp-redis  Removing
+ Container device-grp-redis  Removed
+ Container device-grp-docs  Stopped
+ Container device-grp-docs  Removing
+ Container device-grp-docs  Removed
+ Network netbox_device_groups_default  Removing
+ Network netbox_device_groups_default  Removed
 ```
 
 This will safely shut down all of your running Docker containers for this project. When you are ready to spin containers back up, it is as simple as running `invoke start` again [as seen previously](#starting-the-development-environment).
@@ -286,6 +299,14 @@ The back-end Django process is setup to automatically reload itself (it only tak
 
 When trying to debug an issue, one helpful thing you can look at are the logs within the Docker containers.
 
+| container name | What it is |
+| --- | --- |
+| `device-grp-docs` | The Netbox Container |
+| `device-grp-ui` | The documentation Container |
+| `device-grp-db` | The PostgreSQL Container |
+| `device-grp-redis` | The Redis Container |
+
+
 ```bash
 ➜ docker logs <name of container> -f
 ```
@@ -293,9 +314,6 @@ When trying to debug an issue, one helpful thing you can look at are the logs wi
 !!! note
     The `-f` tag will keep the logs open, and output them in realtime as they are generated.
 
-So for example, our plugin is named `customer_clusters`, the command would most likely be `docker logs customer-clusters-ui -f`. You can find the name of all running containers via `docker ps`.
-
-If you want to view the logs specific to the database container, simply use the name of that container instead.
 
 ## To Rebuild or Not to Rebuild
 

@@ -1,10 +1,10 @@
 ---
 dev_addr: "127.0.0.1:8001"
-site_name: "Physical Clusters - A Netbox Plugin - Documentation"
+site_name: "Device Groups - A Netbox Plugin - Documentation"
 edit_uri: "blob/develop/docs/"
-repo_name: "sapcc/netbox-physical-clusters"
-repo_url: "https://github.com/sapcc/netbox-physical-clusters"
-site_url: "https://pages.github.com/sapcc/netbox-physical-clusters"
+repo_name: "sapcc/netbox-device-groups"
+repo_url: "https://github.com/sapcc/netbox-device-groups"
+site_url: "https://pages.github.com/sapcc/netbox-device-groups"
 
 nav:
   - Introduction: "index.md"

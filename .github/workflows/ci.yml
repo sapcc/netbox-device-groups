@@ -5,7 +5,7 @@ on: # yamllint disable-line rule:truthy rule:comments
   - "pull_request"
 
 env:
-  PLUGIN_NAME: "nautobot-physical-clusters"
+  PLUGIN_NAME: "netbox-device-groups"
 
 jobs:
   black:

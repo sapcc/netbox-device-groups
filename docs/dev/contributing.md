@@ -22,11 +22,11 @@ The branching policy includes the following tenets:
 - PRs intended to add new features that break backward compatibility should be discussed before a PR is created.
 - PRs intended to address bug fixes and security patches should be branched from and merged to the `main` branch as `bugfix/bug#`.
 
-Netbox Physical Clusters will observe semantic versioning, as of 1.0. This may result in an quick turn around in minor versions to keep pace with an ever growing feature set.
+Netbox Device Groups will observe semantic versioning, as of 1.0. This may result in an quick turn around in minor versions to keep pace with an ever growing feature set.
 
 ## Release Policy
 
-Netbox Physical Clusters has currently no intended scheduled release schedule, and will release new features in minor versions.
+Netbox Device Groups has currently no intended scheduled release schedule, and will release new features in minor versions.
 
 When a new release of any kind (e.g. from `release-<major>.<minor>` to `main`) is created the following should happen.
 

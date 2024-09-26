@@ -1,7 +1,7 @@
 {
 	"folders": [
 		{
-			"name": "Physical Clusters - A Netbox Plugin.",
+			"name": "Device Groups - A Netbox Plugin.",
 			"path": ".",
 		}
 	],
@@ -13,29 +13,24 @@
 			"editor.defaultFormatter": "ms-python.black-formatter",
 			"editor.formatOnSave": true
 		},
-		"python.analysis.extraPaths": [
-            // We recommend having the source code for netbox in a local folder checked out
-			// with tag matching the release for which you are developing as this helps VSCode
-			// with reerences for intellisense
-			// i,e,
-			//     git clone https://github.com/netbox-community/netbox.git ; cd netbox
-			//     git checkout tags/v3.5.9 -b v3.5.9-branch
-
-			"../netbox/netbox/"
-		],
+		// We recommend having the source code for netbox in a local folder checked out
+		// with tag matching the release for which you are developing
+		// i,e,
+		//     git clone https://github.com/netbox-community/netbox.git ; cd netbox
+		//     git checkout tags/v3.5.9 -b v3.5.9-branch
+		// as this helps VSCode with references for intellisense,
+		// then add this folder to your User Settings -> python.analysis.extraPaths
 		"python.languageServer": "Pylance",
 		"cSpell.words": [
 			"appendonly",
 			"clearcache",
 			"clearsessions",
-			"clustertype",
 			"collectstatic",
 			"colors",
 			"contenttypes",
 			"creds",
 			"DCIM",
 			"Dockerised",
-			"extclustertype",
 			"filterset",
 			"filtersets",
 			"graphiql",
@@ -47,8 +42,8 @@
 			"netbox",
 			"Netbox",
 			"nohighlight",
-			"physicalcluster",
-			"physicalclustertype",
+			"devicegroup",
+			"devicegrouptype",
 			"prechange",
 			"pydocstyle",
 			"pypoetry",

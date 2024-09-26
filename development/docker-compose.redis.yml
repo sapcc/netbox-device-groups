@@ -1,8 +1,7 @@
-version: '3.8'
 services:
-  phy-cluster-redis:
-    container_name: "phy-cluster-redis"
-    hostname: "phy-cluster-redis"
+  device-grp-redis:
+    container_name: "device-grp-redis"
+    hostname: "device-grp-redis"
     image: "redis:7-alpine"
     command:
       - "sh"

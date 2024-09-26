@@ -19,14 +19,15 @@ def is_truthy(arg):
 
 
 # Use pyinvoke configuration for default values, see http://docs.pyinvoke.org/en/stable/concepts/configuration.html
-# Variables may be overwritten in invoke.yml or by the environment variables INVOKE_netbox_physical_cluster_xxx
-namespace = Collection("netbox_physical_cluster")
+# Variables may be overwritten in invoke.yml or by the environment variables INVOKE_netbox_device_group_xxx
+namespace = Collection("netbox_device_group")
 namespace.configure(
     {
-        "netbox_physical_cluster": {
-            "netbox_ver": "3.5.9",
+        "netbox_device_group": {
+            "netbox_ver": "3.7.4",
             "python_ver": "3.10",
-            "project_name": "netbox_physical_clusters",
+            "poetry_ver": "1.8.2",
+            "project_name": "netbox_device_groups",
             "local": False,
             "compose_dir": os.path.join(os.path.dirname(__file__), "development"),
             "compose_files": [
@@ -71,14 +72,15 @@ def docker_compose(context, command, **kwargs):
     build_env = {
         # Note: 'docker-compose logs' will stop following after 60 seconds by default,
         # so we are overriding that by setting this environment variable.
-        "COMPOSE_HTTP_TIMEOUT": context.netbox_physical_cluster.compose_http_timeout,
-        "NETBOX_VER": context.netbox_physical_cluster.netbox_ver,
-        "PYTHON_VER": context.netbox_physical_cluster.python_ver,
+        "COMPOSE_HTTP_TIMEOUT": context.netbox_device_group.compose_http_timeout,
+        "NETBOX_VER": context.netbox_device_group.netbox_ver,
+        "PYTHON_VER": context.netbox_device_group.python_ver,
+        "POETRY_VER": context.netbox_device_group.poetry_ver,
     }
-    compose_command = f'docker-compose --project-name {context.netbox_physical_cluster.project_name} \
-        --project-directory "{context.netbox_physical_cluster.compose_dir}"'
-    for compose_file in context.netbox_physical_cluster.compose_files:
-        compose_file_path = os.path.join(context.netbox_physical_cluster.compose_dir, compose_file)
+    compose_command = f'docker-compose --project-name {context.netbox_device_group.project_name} \
+        --project-directory "{context.netbox_device_group.compose_dir}"'
+    for compose_file in context.netbox_device_group.compose_files:
+        compose_file_path = os.path.join(context.netbox_device_group.compose_dir, compose_file)
         compose_command += f' -f "{compose_file_path}"'
     compose_command += f" {command}"
     print(f'Running docker-compose command "{command}"')
@@ -87,16 +89,16 @@ def docker_compose(context, command, **kwargs):
 
 def run_command(context, command, **kwargs):
     """Wrapper to run a command locally or inside the netbox container."""
-    if is_truthy(context.netbox_physical_cluster.local):
+    if is_truthy(context.netbox_device_group.local):
         context.run(command, **kwargs)
     else:
         # Check if netbox is running, no need to start another netbox container to run a command
         docker_compose_status = "ps --services --filter status=running"
         results = docker_compose(context, docker_compose_status, hide="out")
-        if "phy-cluster-ui" in results.stdout:
-            compose_command = f"exec phy-cluster-ui {command}"
+        if "device-grp-ui" in results.stdout:
+            compose_command = f"exec device-grp-ui {command}"
         else:
-            compose_command = f"run --entrypoint '{command}' phy-cluster-ui"
+            compose_command = f"run --entrypoint '{command}' device-grp-ui"
 
         docker_compose(context, compose_command, pty=True)
 
@@ -120,8 +122,8 @@ def build(context, force_rm=False, cache=True):
         command += " --force-rm"
 
     print(
-        f"Building Netbox {context.netbox_physical_cluster.netbox_ver} "
-        f"with Python {context.netbox_physical_cluster.python_ver}..."
+        f"Building Netbox {context.netbox_device_group.netbox_ver} "
+        f"with Python {context.netbox_device_group.python_ver}..."
     )
     docker_compose(context, command)
 
@@ -186,7 +188,7 @@ def vscode(context):
         "tail": "Tail N number of lines or 'all'",
     }
 )
-def logs(context, service="netbox", follow=False, tail=None):
+def logs(context, service="device-grp-ui", follow=False, tail=None):
     """View the logs of a docker-compose service."""
     command = "logs "
 

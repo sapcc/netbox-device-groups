@@ -30,14 +30,14 @@ RUN git clone --depth 1 --branch=v${NETBOX_VER} https://github.com/netbox-commun
 WORKDIR /app
 COPY . /app/
 # And install poetry
+ARG POETRY_VER="1.7.1"
+
 ENV POETRY_HOME="/opt/poetry" \
     POETRY_VIRTUALENVS_CREATE=0 \
     POETRY_NO_INTERACTION=1 \
-    POETRY_VERSION=1.3.1
+    POETRY_VERSION=${POETRY_VER}
 ENV PATH="$POETRY_HOME/bin:$PATH"
 RUN curl -sSL https://install.python-poetry.org | python3 -
-# Configure poetry for container wide package install
-RUN poetry config virtualenvs.create false
 # install the dependencies
 RUN poetry install --no-interaction --no-ansi
 

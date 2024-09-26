@@ -1,256 +1,44 @@
 [
     {
-        "model": "dcim.manufacturer",
-        "pk": 1,
+        "model": "netbox_device_groups.devicegrouptype",
         "fields": {
-            "created": "2023-09-20T12:57:29.135Z",
-            "last_updated": "2023-09-20T12:57:29.135Z",
+            "created": "2024-04-04T21:20:54.469Z",
+            "last_updated": "2024-04-04T21:20:54.469Z",
             "custom_field_data": {},
-            "name": "Cisco",
-            "slug": "cisco",
-            "description": "https://www.cisco.com/"
+            "name": "FAS2750",
+            "description": "NetApp Filer FAS2750",
+            "comments": ""
         }
     },
     {
-        "model": "dcim.devicetype",
-        "pk": 1,
+        "model": "netbox_device_groups.devicegrouptype",
         "fields": {
-            "created": "2023-09-20T12:57:29.135Z",
-            "last_updated": "2023-09-20T12:57:29.135Z",
+            "created": "2024-04-04T21:24:42.086Z",
+            "last_updated": "2024-04-04T21:24:42.086Z",
             "custom_field_data": {},
+            "name": "FAS8040",
+            "description": "NetApp Filer FAS8040",
+            "comments": ""
+        }
+    },
+    {
+        "model": "netbox_device_groups.devicegroup",
+        "fields": {
+            "created": "2024-04-04T21:21:36.295Z",
+            "last_updated": "2024-04-04T21:24:56.485Z",
+            "custom_field_data": {},
+            "name": "stnpa3",
             "description": "",
             "comments": "",
-            "weight": null,
-            "weight_unit": "",
-            "_abs_weight": null,
-            "manufacturer": 1,
-            "model": "N9K-C9408",
-            "slug": "n9k-c9408",
-            "default_platform": null,
-            "part_number": "",
-            "u_height": "3.0",
-            "is_full_depth": true,
-            "subdevice_role": "",
-            "airflow": "",
-            "front_image": "",
-            "rear_image": ""
-        }
-    },
-    {
-        "model": "dcim.devicerole",
-        "pk": 1,
-        "fields": {
-            "created": "2023-09-20T12:57:29.135Z",
-            "last_updated": "2023-09-20T12:57:29.135Z",
-            "custom_field_data": {},
-            "name": "Cisco Spine",
-            "slug": "cisco-spine",
-            "description": "",
-            "color": "607d8b",
-            "vm_role": false,
-            "config_template": null
-        }
-    },
-    {
-        "model": "dcim.device",
-        "pk": 1,
-        "fields": {
-            "created": "2023-09-20T12:57:29.135Z",
-            "last_updated": "2023-09-20T12:57:29.135Z",
-            "custom_field_data": {},
-            "description": "",
-            "comments": "",
-            "local_context_data": null,
-            "device_type": 1,
-            "device_role": 1,
-            "tenant": null,
-            "platform": null,
-            "name": "WDC-sp-001 a",
-            "_name": "WDC-sp-00000001 a",
-            "serial": "123456789",
-            "asset_tag": null,
-            "site": 1,
-            "location": null,
-            "rack": null,
-            "position": null,
-            "face": "",
-            "status": "active",
-            "airflow": "",
+            "device_group_type": 2,
+            "status": "planned",
+            "tenant": 12,
+            "site": 20,
             "primary_ip4": null,
-            "primary_ip6": null,
-            "cluster": null,
-            "virtual_chassis": null,
-            "vc_position": null,
-            "vc_priority": null,
-            "config_template": null
-        }
-    },
-    {
-        "model": "dcim.device",
-        "pk": 2,
-        "fields": {
-            "created": "2023-09-20T12:57:29.135Z",
-            "last_updated": "2023-09-20T12:57:29.135Z",
-            "custom_field_data": {},
-            "description": "",
-            "comments": "",
-            "local_context_data": null,
-            "device_type": 1,
-            "device_role": 1,
-            "tenant": null,
-            "platform": null,
-            "name": "WDC-sp-001 b",
-            "_name": "WDC-sp-00000001 b",
-            "serial": "987654321",
-            "asset_tag": null,
-            "site": 1,
-            "location": null,
-            "rack": null,
-            "position": null,
-            "face": "",
-            "status": "active",
-            "airflow": "",
-            "primary_ip4": null,
-            "primary_ip6": null,
-            "cluster": null,
-            "virtual_chassis": null,
-            "vc_position": null,
-            "vc_priority": null,
-            "config_template": null
-        }
-    },
-    {
-        "model": "dcim.region",
-        "pk": 1,
-        "fields": {
-            "created": "2023-09-20T12:57:29.135Z",
-            "last_updated": "2023-09-20T12:57:29.135Z",
-            "custom_field_data": {},
-            "parent": null,
-            "name": "Ireland",
-            "slug": "ireland",
-            "description": "Plus One Networking - Ireland Test Region",
-            "lft": 1,
-            "rght": 2,
-            "tree_id": 1,
-            "level": 0
-        }
-    },
-    {
-        "model": "dcim.sitegroup",
-        "pk": 1,
-        "fields": {
-            "created": "2023-09-20T12:57:29.135Z",
-            "last_updated": "2023-09-20T12:57:29.135Z",
-            "custom_field_data": {},
-            "parent": null,
-            "name": "Plus One Networking - Ireland",
-            "slug": "plus-one-networking",
-            "description": "Plus One Networking - Ireland Test Site Group",
-            "lft": 1,
-            "rght": 2,
-            "tree_id": 1,
-            "level": 0
-        }
-    },
-    {
-        "model": "dcim.site",
-        "pk": 1,
-        "fields": {
-            "created": "2023-09-20T12:57:29.135Z",
-            "last_updated": "2023-09-20T12:57:29.135Z",
-            "custom_field_data": {},
-            "description": "",
-            "comments": "",
-            "name": "Wicklow DC",
-            "_name": "Wicklow DC",
-            "slug": "wicklow-dc",
-            "status": "active",
-            "region": 1,
-            "group": 1,
-            "tenant": 1,
-            "facility": "",
-            "time_zone": null,
-            "physical_address": "",
-            "shipping_address": "",
-            "latitude": null,
-            "longitude": null,
-            "asns": []
-        }
-    },
-    {
-        "model": "tenancy.tenantgroup",
-        "pk": 1,
-        "fields": {
-            "created": "2023-09-20T12:57:29.135Z",
-            "last_updated": "2023-09-20T12:57:29.135Z",
-            "custom_field_data": {},
-            "parent": null,
-            "description": "Plus One Networking - Test Tenant Group",
-            "name": "Plus One Networking",
-            "slug": "plus-one-networking",
-            "lft": 1,
-            "rght": 2,
-            "tree_id": 1,
-            "level": 0
-        }
-    },
-    {
-        "model": "tenancy.tenant",
-        "pk": 1,
-        "fields": {
-            "created": "2023-09-20T12:57:53.533Z",
-            "last_updated": "2023-09-20T12:57:53.533Z",
-            "custom_field_data": {},
-            "description": "Plus One Networking - Test Tenant",
-            "comments": "",
-            "name": "Plus One Networking",
-            "slug": "plus-one-networking",
-            "group": 1
-        }
-    },
-    {
-        "model": "netbox_physical_clusters.physicalclustertype",
-        "pk": 1,
-        "fields": {
-            "created": "2023-09-20T13:18:59.141Z",
-            "last_updated": "2023-09-20T13:18:59.141Z",
-            "custom_field_data": {},
-            "name": "Arista Spines",
-            "description": "arista-spines"
-        }
-    },
-    {
-        "model": "netbox_physical_clusters.physicalclustertype",
-        "pk": 2,
-        "fields": {
-            "created": "2023-09-20T13:21:15.222Z",
-            "last_updated": "2023-09-20T13:21:15.222Z",
-            "custom_field_data": {},
-            "name": "Cisco Spines",
-            "description": "cisco-spines"
-        }
-    },
-    {
-        "model": "netbox_physical_clusters.physicalclustertype",
-        "pk": 3,
-        "fields": {
-            "created": "2023-09-20T13:21:15.222Z",
-            "last_updated": "2023-09-20T13:21:15.222Z",
-            "custom_field_data": {},
-            "name": "Arista MLAG",
-            "description": "arista-mlag"
-        }
-    },
-    {
-        "model": "netbox_physical_clusters.physicalclustertype",
-        "pk": 4,
-        "fields": {
-            "created": "2023-09-20T13:21:15.222Z",
-            "last_updated": "2023-09-20T13:21:15.222Z",
-            "custom_field_data": {},
-            "name": "Cisco VPC",
-            "description": "cisco-vpc"
+            "devices": [
+                1278,
+                1279
+            ]
         }
     }
 ]

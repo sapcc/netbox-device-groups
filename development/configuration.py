@@ -5,7 +5,7 @@ import os
 # Development  settings #
 #                       #
 #########################
-BANNER_TOP = "Netbox Plugin - Physical Clusters"
+BANNER_TOP = "Netbox Plugin - Device Groups"
 BANNER_BOTTOM = BANNER_TOP
 BANNER_LOGIN = BANNER_TOP
 LOGIN_REQUIRED = False
@@ -19,7 +19,7 @@ DATETIME_FORMAT = "N j, Y g:i a"
 SHORT_DATETIME_FORMAT = "Y-m-d H:i"
 
 # exclude all objects from view permissions
-EXEMPT_VIEW_PERMISSIONS = ["*"]
+# EXEMPT_VIEW_PERMISSIONS = ["*"]    # as per   https://github.wdf.sap.corp/cc/netbox-deployment/issues/191
 
 
 ALLOWED_HOSTS = os.getenv("NETBOX_ALLOWED_HOSTS", "*").split(" ")
@@ -57,10 +57,10 @@ DEVELOPER = True
 INTERNAL_IPS = ("0.0.0.0", "127.0.0.1", "::1")
 
 PLUGINS = [
-    "netbox_physical_clusters",
+    "netbox_device_groups",
 ]
 PLUGINS_CONFIG = {
-    # "netbox_physical_clusters": {
+    # "netbox_device_groups": {
     #     "USERNAME": "foo",
     #     "PASSWORD": "bar",
     # }
