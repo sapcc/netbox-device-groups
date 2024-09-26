@@ -1,2 +1,4 @@
 [virtualenvs]
 in-project = true
+prompt = "{project_name}"
+options.no-setuptools = true
